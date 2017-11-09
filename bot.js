@@ -23,7 +23,7 @@ client.on('message', message => {
     else if(message.content === '--help'){
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
-          .setDescription("This is a bot make by @Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone")
+          .setDescription("Welcome to the powerful bot, Andromeda. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone")
           .setColor("#0000FF");
       message.channel.sendEmbed(embed);
     }
