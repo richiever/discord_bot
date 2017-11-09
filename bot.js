@@ -37,6 +37,11 @@ client.on('message', message => {
 }
 
     if (message.content.startsWith("--kick")) {
+
+      let allowedRole = message.guild.roles.find("name", "rolename");
+      if (!message.member.roles.has(allowedRole.id) {
+        return message.reply("You don't have the correct permissions to run this command! :hushed:");
+      }
         if (!message.mentions.users.size) {
             return message.reply('You need to tag a user in order to kick them!');
           }
@@ -54,6 +59,9 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith("--ban")) {
+      if (!message.member.roles.has(allowedRole.id) {
+        return message.reply("You don't have the correct permissions to run this command! :hushed:");
+      }
         if (!message.mentions.users.size) {
             return message.reply('You need to tag a user in order to ban them!');
           }
@@ -72,6 +80,9 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith("--prune")) {
+      if (!message.member.roles.has(allowedRole.id) {
+        return message.reply("You don't have the correct permissions to run this command! :hushed:");
+      }
       try {
         let messagecount = args.slice(1).join(" ");
         message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
