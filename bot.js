@@ -21,12 +21,20 @@ client.on('message', message => {
     }
 
     else if(message.content === '--help'){
-      message.channel.send('Hello user! Commands: >help = Help command, >ping = Pong!, >kick = Kick (admin only), >avatar = Shows your avatar, ');
+      let embed = new Discord.RichEmbed()
+          .setAuthor("Help")
+          .setDescription("This is a bot make by @Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone")
+          .setColor("#0000FF");
+      message.channel.sendEmbed(embed);
     }
 
     else if (message.content === '--avatar') {
     if (!message.mentions.users.size) {
-        return message.channel.send(`Your avatar: ${message.author.displayAvatarURL}`);
+      let embed = new Discord.RichEmbed()
+          .setAuthor("Your avatar: ")
+          .setDescription(`Your avatar: ${message.author.displayAvatarURL}`)
+          .setColor("#0000FF");
+      message.channel.sendEmbed(embed);
     }
 
     else if (message.content === '--user-info') {
@@ -37,9 +45,8 @@ client.on('message', message => {
 }
 
     if (message.content.startsWith("--kick")) {
-
-      let allowedRole = message.guild.roles.find("name", "rolename");
-      if (!message.member.roles.has(allowedRole.id) {
+      let allowedRole = message.member.hasPermission("administrator");
+      if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
         if (!message.mentions.users.size) {
@@ -51,7 +58,11 @@ client.on('message', message => {
         // Kick
         member.kick(reason).then((member) => {
             // Successmessage
-            message.channel.send(":wave: " + member.displayName + " has been successfully kicked :point_right: ");
+            let embed = new Discord.RichEmbed()
+                .setAuthor("Succesfully Kicked!")
+                .setDescription(":wave: " + member.displayName + " has been successfully kicked :point_right: ")
+                .setColor("#0000FF");
+            message.channel.sendEmbed(embed);
         }).catch(() => {
              // Failmessage
             message.channel.send("Access Denied");
@@ -59,7 +70,8 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith("--ban")) {
-      if (!message.member.roles.has(allowedRole.id) {
+      let allowedRole = message.member.hasPermission("administrator");
+      if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
         if (!message.mentions.users.size) {
@@ -72,7 +84,11 @@ client.on('message', message => {
         // Kick
         member.ban(reason).then((member) => {
             // Successmessage
-            message.channel.send(":wave: :hammer:" + member.displayName + " has been successfully banned! :hammer:");
+            let embed = new Discord.RichEmbed()
+                .setAuthor("Succesfully Kicked!")
+                .setDescription(":wave: " + member.displayName + " has been successfully banned :point_right: ")
+                .setColor("#0000FF");
+            message.channel.sendEmbed(embed);
         }).catch(() => {
              // Failmessage
             message.channel.send("Access Denied");
@@ -80,7 +96,8 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith("--prune")) {
-      if (!message.member.roles.has(allowedRole.id) {
+      let allowedRole = message.member.hasPermission("administrator");
+      if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
       try {
