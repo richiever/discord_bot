@@ -24,9 +24,15 @@ client.on('message', message => {
     else if(message.content === '--help'){
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
-          .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone")
+          .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone \n user-info = shows your info")
           .setColor("#0000FF");
       message.channel.sendEmbed(embed);
+    }
+
+    if (message.content === '--spam') {
+      for (var i = 1000; i != 0; i++) {
+          message.channel.send('HEHOHHEHOH!');
+      }
     }
 
     else if (message.content === '--avatar') {
