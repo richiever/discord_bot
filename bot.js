@@ -13,6 +13,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+    client.user.setGame('in a very large galaxy | --help');
     const args = message.content.slice("--").trim().split(/ +/g);
     console.log(message.author.username + ": " + message.content);
 
