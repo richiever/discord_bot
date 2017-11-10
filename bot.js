@@ -29,12 +29,6 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
     }
 
-    else if (message.content === '--spam') {
-      for (var i = 1000; i != 0; i++) {
-          message.channel.send('HEHOHHEHOH!');
-      }
-    }
-
     else if (message.content === '--avatar') {
     if (!message.mentions.users.size) {
       let embed = new Discord.RichEmbed()
