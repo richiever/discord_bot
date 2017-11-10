@@ -4,7 +4,6 @@
   "description": "The bot for the Aritro Vlogs server!",
   "main": "bot.js",
   "author": "Aritro Saha",
-  "clientPermissions": ["ADMINISTRATOR"],
   "dependencies": {
     "discord.js": "^11.2.1",
     "winston": "^2.4.0"
