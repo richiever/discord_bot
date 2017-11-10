@@ -29,7 +29,7 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
     }
 
-    if (message.content === '--spam') {
+    else if (message.content === '--spam') {
       for (var i = 1000; i != 0; i++) {
           message.channel.send('HEHOHHEHOH!');
       }
