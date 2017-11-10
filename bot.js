@@ -24,7 +24,7 @@ client.on('message', message => {
     else if(message.content === '--help'){
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
-          .setDescription("Welcome to the powerful bot, Andromeda. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone")
+          .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone")
           .setColor("#0000FF");
       message.channel.sendEmbed(embed);
     }
@@ -114,4 +114,4 @@ client.on('message', message => {
 });
 
 // login to Discord with your app's token
-client.login('MzQ3NDg0ODY0ODI5ODQ5NjAw.DOPqEw.lALIn95WK-MDzk5fhydjIKIjhBg');
+client.login('Mzc4Njc3MTc3NDEzMDA5NDA4.DOe-LQ.7GR7ZUEa3u8fQONHYv_HTyTOYpk');

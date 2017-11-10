@@ -1,7 +1,7 @@
 {
-  "name": "Aritro-Vlogs-Bot",
+  "name": "Andromeda",
   "version": "1.0.0",
-  "description": "The bot for the Aritro Vlogs server!",
+  "description": "The better and new version of Andromeda.",
   "main": "bot.js",
   "author": "Aritro Saha",
   "dependencies": {
