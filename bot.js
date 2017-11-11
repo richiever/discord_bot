@@ -28,7 +28,7 @@ client.on('message', message => {
     else if(message.content === '--help'){
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
-          .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: help = Help command \n ping = Pong! \n kick = Kick (admin only) \n avatar = Shows your avatar \n prune = prunes someone \n user-info = shows your info")
+          .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: --help = Help command \n --ping = Pong! \n --kick = Kick (admin only) \n --avatar = Shows your avatar \n --prune = prunes someone \n you suck (no prefix) = well you swallow")
           .setColor("#0000FF");
       message.channel.sendEmbed(embed);
     }
@@ -42,10 +42,6 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
       message.channel.send(`${message.author.displayAvatarURL}`);
     }
-
-    else if (message.content === '--user-info') {
-        message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}`);
-  }
 
     // ...
 }
