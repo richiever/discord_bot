@@ -21,6 +21,10 @@ client.on('message', message => {
       message.channel.send('Pong!');
     }
 
+    else if (message.content === 'you suck') {
+      message.channel.reply('well you swallow LMAOOOOOOOOOOOOOOO');
+    }
+
     else if(message.content === '--help'){
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
