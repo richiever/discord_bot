@@ -22,7 +22,7 @@ client.on('message', message => {
     }
 
     else if (message.content === 'you suck') {
-      message.reply('well you swallow LMAOOOOOOOOOOOOOOO');
+      message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
     }
 
     else if(message.content === '--help'){
