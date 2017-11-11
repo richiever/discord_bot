@@ -106,7 +106,7 @@ client.on('message', message => {
         let messagecount = args.slice(1).join(" ");
         message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
         message.channel.send("Pruned succesfully");
-        message.delete(1).then(msg => console.log(`Deleted message from ${msg.author}`)).catch(message.channel.send("Error during pruning"));
+        message.delete(1).then(msg => console.log(`Deleted message from ${msg.author}`));
       } catch (e) {
         message.channel.send("Could not prune. Are you trying to prune messages older than 14 days?");
       }
