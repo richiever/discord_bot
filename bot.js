@@ -4,13 +4,13 @@ const Discord = require('discord.js');
 // create a new Discord client
 const client = new Discord.Client();
 
-// when the client is ready, run this code
-// this event will trigger whenever your bot:
-// - finishes logging in
-// - reconnects after disconnecting
 client.on('ready', () => {
     console.log('Ready!');
 });
+
+// if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
+var key = process.env.secret_key;
+
 
 client.on('message', message => {
     client.user.setGame('in a very large galaxy | --help');
@@ -116,4 +116,4 @@ client.on('message', message => {
 });
 
 // login to Discord with your app's token
-client.login('Mzc4Njc3MTc3NDEzMDA5NDA4.DOe-LQ.7GR7ZUEa3u8fQONHYv_HTyTOYpk');
+client.login(key);
