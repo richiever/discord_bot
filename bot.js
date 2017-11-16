@@ -72,7 +72,7 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith("--ban")) {
-      let allowedRole = message.member.hasPermission("ADMINISTRATOR");
+      let allowedRole = message.member.hasPermission("BANMEMBER");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
