@@ -11,7 +11,7 @@ client.on('ready', () => {
 // if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
 var key = process.env.secret_key;
 
-var prefix == "--"
+var prefix == "--";
 
 
 client.on('message', message => {
