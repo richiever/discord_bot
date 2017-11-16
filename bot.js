@@ -47,7 +47,7 @@ client.on('message', message => {
 }
 
     if (message.content.startsWith("--kick")) {
-      let allowedRole = message.member.hasPermission("ADMINISTRATOR");
+      let allowedRole = message.member.hasPermission("MANAGEMESSAGES");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
@@ -98,7 +98,7 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith("--prune")) {
-      let allowedRole = message.member.hasPermission("ADMINISTRATOR");
+      let allowedRole = message.member.hasPermission("MANAGEMESSAGES");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
