@@ -49,7 +49,7 @@ client.on('message', message => {
 }
 
     if (message.content.startsWith("--kick")) {
-      let allowedRole = message.member.hasPermission("MANAGEMESSAGES");
+      let allowedRole = message.member.hasPermission("KICKMEMBER");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
