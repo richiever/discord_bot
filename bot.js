@@ -11,6 +11,8 @@ client.on('ready', () => {
 // if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
 var key = process.env.secret_key;
 
+var prefix == "--";
+
 
 client.on('message', message => {
     client.user.setGame('in a very large galaxy | --help');
@@ -25,7 +27,7 @@ client.on('message', message => {
       message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
     }
 
-    else if(message.content === '--help'){
+    else if(message.content ===  `${prefix}help`){
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
           .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: --help = Help command \n --ping = Pong! \n --kick = Kick (admin only) \n --avatar = Shows your avatar \n --prune = prunes someone \n you suck (no prefix) = well you swallow")
@@ -42,7 +44,6 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
       message.channel.send(`${message.author.displayAvatarURL}`);
     }
-
     // ...
 }
 
