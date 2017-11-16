@@ -11,7 +11,7 @@ client.on('ready', () => {
 // if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
 var key = process.env.secret_key;
 
-var prefix == "--";
+var prefix == "--"
 
 
 client.on('message', message => {
@@ -27,7 +27,7 @@ client.on('message', message => {
       message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
     }
 
-    else if(message.content === prefix + 'help'){
+    else if(message.content === '--help'){
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
           .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by Aritro Is Cool#4068 \n The prefix is: -- \n Commands: --help = Help command \n --ping = Pong! \n --kick = Kick (admin only) \n --avatar = Shows your avatar \n --prune = prunes someone \n you suck (no prefix) = well you swallow")
@@ -35,7 +35,7 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
     }
 
-    else if (message.content === prefix +'avatar') {
+    else if (message.content === '--avatar') {
     if (!message.mentions.users.size) {
       let embed = new Discord.RichEmbed()
           .setAuthor("Your avatar: ")
@@ -44,11 +44,12 @@ client.on('message', message => {
       message.channel.sendEmbed(embed);
       message.channel.send(`${message.author.displayAvatarURL}`);
     }
+
     // ...
 }
 
-    if (message.content.startsWith(prefix + "kick")) {
-      let allowedRole = message.member.hasPermission("KICKMEMBER");
+    if (message.content.startsWith("--kick")) {
+      let allowedRole = message.member.hasPermission("MANAGEMESSAGES");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
@@ -72,7 +73,7 @@ client.on('message', message => {
         });
     }
 
-    if (message.content.startsWith(prefix + "ban")) {
+    if (message.content.startsWith("--ban")) {
       let allowedRole = message.member.hasPermission("BANMEMBER");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
@@ -98,7 +99,7 @@ client.on('message', message => {
         });
     }
 
-    if (message.content.startsWith(prefix + "prune")) {
+    if (message.content.startsWith("--prune")) {
       let allowedRole = message.member.hasPermission("MANAGEMESSAGES");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
@@ -107,7 +108,7 @@ client.on('message', message => {
         let messagecount = args.slice(1).join(" ");
         message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
         message.channel.send("Pruned succesfully");
-        message.delete(1);
+        message.delete(1).then(msg => console.log(`Deleted message from ${msg.author}`));
       } catch (e) {
         message.channel.send("Could not prune. Are you trying to prune messages older than 14 days?");
       }
