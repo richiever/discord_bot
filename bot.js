@@ -100,7 +100,7 @@ client.on('message', message => {
     }
 
     if (message.content.startsWith("--prune")) {
-      let allowedRole = message.member.hasPermission("MANAGEMESSAGES");
+      let allowedRole = message.member.hasPermission("ADMINISTRATOR");
       if (!allowedRole) {
         return message.reply("You don't have the correct permissions to run this command! :hushed:");
       }
