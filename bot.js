@@ -118,7 +118,7 @@ client.on('message', message => {
 });
 
 
-bot.on('guildMemberAdd', async (member) => {
+client.on('guildMemberAdd', async (member) => {
   if (!member.bot) {
   message.send(`Hi! **<@${member.user.id}>** Welcome to the server!`);
   } else {
