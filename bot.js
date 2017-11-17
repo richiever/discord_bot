@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
+    client.user.setPresence({game: {name: "in a large galaxy, --help", type: 1}});
     console.log('Ready!');
 });
 
@@ -15,7 +16,6 @@ var prefix = "--";
 
 
 client.on('message', message => {
-    client.user.setGame('in a very large galaxy | --help');
     const args = message.content.slice("--").trim().split(/ +/g);
     console.log(message.author.username + ": " + message.content);
 
