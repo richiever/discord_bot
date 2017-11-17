@@ -117,5 +117,14 @@ client.on('message', message => {
 
 });
 
+
+bot.on('guildMemberAdd', async (member) => {
+  if (!member.bot) {
+  message.send(`Hi! **<@${member.user.id}>** Welcome to the server!`);
+  } else {
+    message.send(`We got a new bot out here <@${member.user.id} :robot: !!`);
+  }
+});
+
 // login to Discord with your app's token
 client.login(key);
