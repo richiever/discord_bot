@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-    client.user.setPresence({game: {name: "in a large galaxy, --help", type: 1}});
+    client.user.setPresence({game: {name: "in a large galaxy, --help", type: 2}});
     console.log('Ready!');
 });
 
