@@ -5,7 +5,7 @@
   "main": "bot.js",
   "author": "Aritro Saha",
   "dependencies": {
-    "discord.js": "^11.2.1",
+    "discord.js": "github:hydrabolt/discord.js",
     "winston": "^2.4.0"
   }
 }
