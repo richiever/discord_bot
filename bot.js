@@ -120,9 +120,7 @@ client.on('message', message => {
 
 client.on('guildMemberAdd', async (member) => {
   if (!member.bot) {
-  message.send(`Hi! **<@${member.user.id}>** Welcome to the server!`);
-  } else {
-    message.send(`We got a new bot out here <@${member.user.id} :robot: !!`);
+  client.sendMessage(user, "Welcome to: " + server.name);
   }
 });
 
