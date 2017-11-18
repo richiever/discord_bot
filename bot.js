@@ -118,9 +118,9 @@ client.on('message', message => {
 });
 
 
-client.on('serverNewMember', async (member) => {
+client.on('serverNewMember', async (member, user) => {
   if (!member.bot) {
-  client.sendMessage(member, "Welcome to: " + server.name + "! Hope you enjoy it!");
+  client.sendMessage(user, "Welcome to: " + server.name + "! Hope you enjoy it!");
   }
 });
 
