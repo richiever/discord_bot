@@ -5,6 +5,7 @@
   "main": "bot.js",
   "author": "Aritro Saha",
   "dependencies": {
+    "discord-rpc": "^3.0.0-beta.2",
     "discord.js": "github:hydrabolt/discord.js",
     "winston": "^2.4.0"
   }
