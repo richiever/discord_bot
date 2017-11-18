@@ -5,22 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-  console.log('Ready, setting rich presence');
-  client.setActivity({
-    state: 'West of House',
-    details: 'Frustration Level: 0',
-    startTimestamp: Date.now(),
-    endTimestamp: Date.now() + (10 * 60e3),
-    largeImageKey: 'canary-large',
-    smallImageKey: 'ptb-small',
-    partyId: 'party1234',
-    partySize: 1,
-    partyMax: 1,
-    matchSecret: 'xyzzy',
-    joinSecret: 'join',
-    spectateSecret: 'look',
-    instance: false,
-});
+    client.user.setActivity({game: {name: "Google fix Discord, --help", type: 3}});
     console.log('Ready!');
 });
 
