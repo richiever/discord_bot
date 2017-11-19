@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-    // client.user.setPresence({game: {name: "in a large galaxy, --help", type: 1}});
+    client.user.setPresence({game: {name: "in a large galaxy, --help", type: 1}});
     console.log('Ready!');
 });
 
@@ -106,6 +106,11 @@ client.on('message', message => {
              // Failmessage
             return message.channel.send("Access Denied");
         });
+    }
+
+    if (message.content ==="--ban")
+    {
+      message.channel.send(users[Math.floor(Math.random() * users.length)]);
     }
 
     if (message.content.startsWith("--prune")) {
