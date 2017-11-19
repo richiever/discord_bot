@@ -49,9 +49,7 @@ client.on('message', message => {
           .setAuthor("Your avatar: ")
           .setDescription(`Your avatar:`)
           .setColor("#0000FF")
-      return message.channel.send({
-        embed: avatar_embed, `${message.author.displayAvatarURL}`
-      });
+          return message.channel.send(`${message.author.displayAvatarURL}`, {embed: avatar_embed});
     }
 
     // ...
