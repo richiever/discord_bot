@@ -108,7 +108,7 @@ client.on('message', message => {
         });
     }
 
-    if (message.content ==="--ban")
+    if (message.content ==="--random")
     {
       message.channel.send(users[Math.floor(Math.random() * users.length)]);
     }
