@@ -1,6 +1,5 @@
-const { UserSettingsMap } = require('../util/Constants');
+const Constants = require('../util/Constants');
 const Util = require('../util/Util');
-const { Error } = require('../errors');
 
 /**
  * A wrapper around the ClientUser's settings.
@@ -14,10 +13,12 @@ class ClientUserSettings {
   /**
    * Patch the data contained in this class with new partial data.
    * @param {Object} data Data to patch this with
+   * @returns {void}
    * @private
    */
   patch(data) {
-    for (const [key, value] of Object.entries(UserSettingsMap)) {
+    for (const key of Object.keys(Constants.UserSettingsMap)) {
+      const value = Constants.UserSettingsMap[key];
       if (!data.hasOwnProperty(key)) continue;
       if (typeof value === 'function') {
         this[value.name] = value(data[key]);
@@ -32,14 +33,13 @@ class ClientUserSettings {
    * @param {string} name Name of property
    * @param {*} value Value to patch
    * @returns {Promise<Object>}
-   * @private
    */
   update(name, value) {
-    return this.user.client.api.users['@me'].settings.patch({ data: { [name]: value } });
+    return this.user.client.rest.methods.patchUserSettings({ [name]: value });
   }
 
   /**
-   * Sets the position of the guild in the guild listing.
+   * Sets the position at which this guild will appear in the Discord client.
    * @param {Guild} guild The guild to move
    * @param {number} position Absolute or relative position
    * @param {boolean} [relative=false] Whether to position relatively or absolutely
@@ -52,26 +52,26 @@ class ClientUserSettings {
   }
 
   /**
-   * Adds a guild to the list of restricted guilds.
+   * Add a guild to the list of restricted guilds.
    * @param {Guild} guild The guild to add
    * @returns {Promise<Guild>}
    */
   addRestrictedGuild(guild) {
     const temp = Object.assign([], this.restrictedGuilds);
-    if (temp.includes(guild.id)) return Promise.reject(new Error('GUILD_RESTRICTED', true));
+    if (temp.includes(guild.id)) return Promise.reject(new Error('Guild is already restricted'));
     temp.push(guild.id);
     return this.update('restricted_guilds', temp).then(() => guild);
   }
 
   /**
-   * Removes a guild from the list of restricted guilds.
+   * Remove a guild from the list of restricted guilds.
    * @param {Guild} guild The guild to remove
    * @returns {Promise<Guild>}
    */
   removeRestrictedGuild(guild) {
     const temp = Object.assign([], this.restrictedGuilds);
     const index = temp.indexOf(guild.id);
-    if (index < 0) return Promise.reject(new Error('GUILD_RESTRICTED'));
+    if (index < 0) return Promise.reject(new Error('Guild is not restricted'));
     temp.splice(index, 1);
     return this.update('restricted_guilds', temp).then(() => guild);
   }
