@@ -28,6 +28,7 @@ client.on('message', message => {
     }
 
     else if(message.content === '--help'){
+      message.channel.send("idk");
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
           .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068 \n The prefix is: -- \n Commands: --help = Help command \n --ping = Pong! \n --kick = Kick (admin only) \n --avatar = Shows your avatar \n --prune = prunes someone \n you suck (no prefix) = well you swallow")
