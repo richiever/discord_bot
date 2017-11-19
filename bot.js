@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
-    client.user.setPresence({game: {name: "in a large galaxy, --help", type: 1}});
+    // client.user.setPresence({game: {name: "in a large galaxy, --help", type: 1}});
     console.log('Ready!');
 });
 
@@ -115,13 +115,6 @@ client.on('message', message => {
   }
 
 
-});
-
-
-client.on('serverNewMember', async (member, user) => {
-  if (!member.bot) {
-  client.sendMessage(user, "Welcome to: " + server.name + "! Hope you enjoy it!");
-  }
 });
 
 // login to Discord with your app's token
