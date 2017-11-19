@@ -20,15 +20,14 @@ client.on('message', message => {
     console.log(message.author.username + ": " + message.content);
 
     if (message.content === '--ping') {
-      message.channel.send('Pong!');
+      return message.channel.send('Pong!');
     }
 
     else if (message.content === 'you suck') {
-      message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
+      return message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
     }
 
     else if(message.content === '--help'){
-      message.channel.send("idk")
       let help_embed = new Discord.RichEmbed()
           .setTitle("Help")
           .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068")
@@ -50,8 +49,9 @@ client.on('message', message => {
           .setAuthor("Your avatar: ")
           .setDescription(`Your avatar:`)
           .setColor("#0000FF")
-      message.channel.sendEmbed(avatar_embed);
-      message.channel.send(`${message.author.displayAvatarURL}`);
+      return message.channel.send({
+        embed: avatar_embed, `${message.author.displayAvatarURL}`
+      });
     }
 
     // ...
@@ -75,11 +75,11 @@ client.on('message', message => {
                 .setAuthor("Succesfully Kicked!")
                 .setDescription(":wave: " + member.displayName + " has been successfully kicked :point_right: ")
                 .setColor("#0000FF")
-            message.channel.sendEmbed(kick_embed);
+            return message.channel.sendEmbed(kick_embed);
         }).catch((err) => {
           console.log(err);
              // Failmessage
-            //message.channel.send("Access Denied");
+            return message.channel.send("Access Denied");
         });
     }
 
@@ -102,10 +102,10 @@ client.on('message', message => {
                 .setAuthor("Succesfully Kicked!")
                 .setDescription(":wave: " + member.displayName + " has been successfully banned :point_right: ")
                 .setColor("#0000FF")
-            message.channel.sendEmbed(ban_embed);
+            return message.channel.sendEmbed(ban_embed);
         }).catch(() => {
              // Failmessage
-            message.channel.send("Access Denied");
+            return message.channel.send("Access Denied");
         });
     }
 
