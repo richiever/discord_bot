@@ -69,7 +69,7 @@ client.on('message', message => {
                 .setColor("#0000FF");
             message.channel.sendEmbed(embed);
         }).catch((err) => {
-          console.log(err)
+          console.log(err);
              // Failmessage
             //message.channel.send("Access Denied");
         });
