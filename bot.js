@@ -28,6 +28,7 @@ client.on('message', message => {
     }
 
     else if(message.content === '--help'){
+      console.log('reached line 31');
       let help_embed = new Discord.RichEmbed()
           .setTitle("Help")
           .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068")
