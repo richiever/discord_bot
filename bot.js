@@ -41,7 +41,7 @@ client.on('message', message => {
           .addField("ban", "Bans a person from the server (admin only)")
           .addField("you suck (no prefix)", "says 'well you swallow'")
           .setColor("#0000FF")
-      message.channel.send({ embed: help_embed }).catch(err => console.log(err));
+      return message.channel.send({ embed: help_embed });
     }
 
     else if (message.content === '--avatar') {
