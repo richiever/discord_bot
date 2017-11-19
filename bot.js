@@ -31,9 +31,17 @@ client.on('message', message => {
       message.channel.send("idk")
       let embed = new Discord.RichEmbed()
           .setAuthor("Help")
-          .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068 \n The prefix is: -- \n Commands: --help = Help command \n --ping = Pong! \n --kick = Kick (admin only) \n --avatar = Shows your avatar \n --prune = prunes someone \n you suck (no prefix) = well you swallow")
-          .setColor("#0000FF");
-      message.channel.sendEmbed(embed).catch(err => console.log(err));
+          .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068")
+          .addField("Prefix", "The prefix is: --")
+          .addField("help", "The Help Command")
+          .addField("ping", "Sends 'Pong!'")
+          .addField("kick", "Kick a certain user(admin only)")
+          .addField("avatar", "Shows your avatar. @'ing someone will output nothing")
+          .addField("prune", "prunes an amount of messages, requires a integer (admin only)")
+          .addField("ban", "Bans a person from the server (admin only)")
+          .addField("you suck (no prefix)", "says 'well you swallow'")
+          .setColor("#0000FF")
+      message.channel.send(embed).catch(err => console.log(err));
     }
 
     else if (message.content === '--avatar') {
@@ -41,7 +49,7 @@ client.on('message', message => {
       let embed = new Discord.RichEmbed()
           .setAuthor("Your avatar: ")
           .setDescription(`Your avatar:`)
-          .setColor("#0000FF");
+          .setColor("#0000FF")
       message.channel.sendEmbed(embed);
       message.channel.send(`${message.author.displayAvatarURL}`);
     }
@@ -66,7 +74,7 @@ client.on('message', message => {
             let embed = new Discord.RichEmbed()
                 .setAuthor("Succesfully Kicked!")
                 .setDescription(":wave: " + member.displayName + " has been successfully kicked :point_right: ")
-                .setColor("#0000FF");
+                .setColor("#0000FF")
             message.channel.sendEmbed(embed);
         }).catch((err) => {
           console.log(err);
@@ -93,7 +101,7 @@ client.on('message', message => {
             let embed = new Discord.RichEmbed()
                 .setAuthor("Succesfully Kicked!")
                 .setDescription(":wave: " + member.displayName + " has been successfully banned :point_right: ")
-                .setColor("#0000FF");
+                .setColor("#0000FF")
             message.channel.sendEmbed(embed);
         }).catch(() => {
              // Failmessage
