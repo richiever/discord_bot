@@ -33,7 +33,7 @@ client.on('message', message => {
           .setAuthor("Help")
           .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068 \n The prefix is: -- \n Commands: --help = Help command \n --ping = Pong! \n --kick = Kick (admin only) \n --avatar = Shows your avatar \n --prune = prunes someone \n you suck (no prefix) = well you swallow")
           .setColor("#0000FF");
-      message.channel.sendEmbed(embed);
+      message.channel.send({embed});
     }
 
     else if (message.content === '--avatar') {
@@ -42,7 +42,7 @@ client.on('message', message => {
           .setAuthor("Your avatar: ")
           .setDescription(`Your avatar:`)
           .setColor("#0000FF");
-      message.channel.sendEmbed(embed);
+      message.channel.send({embed});
       message.channel.send(`${message.author.displayAvatarURL}`);
     }
 
@@ -93,7 +93,7 @@ client.on('message', message => {
                 .setAuthor("Succesfully Kicked!")
                 .setDescription(":wave: " + member.displayName + " has been successfully banned :point_right: ")
                 .setColor("#0000FF");
-            message.channel.sendEmbed(embed);
+            message.channel.send({embed});
         }).catch(() => {
              // Failmessage
             message.channel.send("Access Denied");
