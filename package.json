@@ -7,6 +7,8 @@
   "dependencies": {
     "discord-rpc": "^3.0.0-beta.2",
     "discord.js": "^11.2.1",
-    "winston": "^2.4.0"
+    "opusscript": "0.0.4",
+    "winston": "^2.4.0",
+    "ytdl-core": "^0.18.2"
   }
 }

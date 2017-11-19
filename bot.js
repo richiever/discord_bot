@@ -15,7 +15,7 @@ var key = process.env.secret_key;
 var prefix = "--";
 
 
-client.on('message', message => {
+client.on('message', message, server => {
     const args = message.content.slice("--").trim().split(/ +/g);
     console.log(message.author.username + ": " + message.content);
 
