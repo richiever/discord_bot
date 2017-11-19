@@ -109,11 +109,6 @@ client.on('message', message => {
         });
     }
 
-    if (message.content ==="--random")
-    {
-      message.channel.sendMessage(message.guild.memberCount[Math.floor(Math.random() * message.guild.memberCount)]);
-    }
-
     if (message.content.startsWith("--prune")) {
       let allowedRole = message.member.hasPermission("ADMINISTRATOR");
       if (!allowedRole) {
