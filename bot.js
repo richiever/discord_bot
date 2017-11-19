@@ -111,7 +111,7 @@ client.on('message', message => {
 
     if (message.content ==="--random")
     {
-      message.channel.send(message.guild.memberCount[Math.floor(Math.random() * message.guild.memberCount)]);
+      message.channel.sendMessage(message.guild.memberCount[Math.floor(Math.random() * message.guild.memberCount)]);
     }
 
     if (message.content.startsWith("--prune")) {
