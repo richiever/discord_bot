@@ -110,7 +110,7 @@ client.on('message', message => {
 
     if (message.content ==="--random")
     {
-      message.channel.send(server.members.length[Math.floor(Math.random() * users.length)]);
+      message.channel.send([Math.floor(Math.random() * server.members.length)]);
     }
 
     if (message.content.startsWith("--prune")) {
