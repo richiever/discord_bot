@@ -13,9 +13,10 @@ client.on('ready', () => {
 var key = process.env.secret_key;
 
 var prefix = "--";
+var servers = {};
 
 
-client.on('message', message, server => {
+client.on('message', message => {
     const args = message.content.slice("--").trim().split(/ +/g);
     console.log(message.author.username + ": " + message.content);
 
@@ -110,7 +111,7 @@ client.on('message', message, server => {
 
     if (message.content ==="--random")
     {
-      message.channel.send([Math.floor(Math.random() * server.members.length)]);
+      message.channel.send(message.guild.memberCount[Math.floor(Math.random() * message.guild.memberCount)]);
     }
 
     if (message.content.startsWith("--prune")) {
@@ -126,6 +127,11 @@ client.on('message', message, server => {
       } catch (e) {
         message.channel.send("Could not prune. Are you trying to prune messages older than 14 days?");
       }
+  }
+
+  if (message.content.startsWith('play'))
+  {
+
   }
 
 
