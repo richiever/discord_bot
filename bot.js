@@ -33,7 +33,7 @@ client.on('message', message => {
           .setAuthor("Help")
           .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068 \n The prefix is: -- \n Commands: --help = Help command \n --ping = Pong! \n --kick = Kick (admin only) \n --avatar = Shows your avatar \n --prune = prunes someone \n you suck (no prefix) = well you swallow")
           .setColor("#0000FF");
-      message.channel.sendEmbed(embed);
+      message.channel.sendEmbed(embed).catch(err => console.log(err));
     }
 
     else if (message.content === '--avatar') {
@@ -68,9 +68,10 @@ client.on('message', message => {
                 .setDescription(":wave: " + member.displayName + " has been successfully kicked :point_right: ")
                 .setColor("#0000FF");
             message.channel.sendEmbed(embed);
-        }).catch(() => {
+        }).catch((err) => {
+          console.log(err)
              // Failmessage
-            message.channel.send("Access Denied");
+            //message.channel.send("Access Denied");
         });
     }
 
