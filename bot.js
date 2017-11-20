@@ -177,7 +177,7 @@ client.on('message', async message => {
         })
       }
 
-      msg.channel.send(`**${songs.title}** has been added to the queue!`);
+      message.reply(`**${songs.title}** has been added to the queue!`);
 
 
     }
