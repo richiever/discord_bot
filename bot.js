@@ -181,13 +181,12 @@ client.on('message', async message => {
         })
       }
 
-      message.reply(`**${songs.title}** has been added to the queue!`);
-
       let play_embed = new Discord.RichEmbed()
           .setAuthor("Music")
           .addField("Title", `${songs.title}`)
           .addField("",`${songs.thumbnail}`, true)
           .addField("Description", `${songs.description}`)
+      return message.channel.send(play_embed);
 
 
     }
