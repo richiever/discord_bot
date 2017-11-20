@@ -146,7 +146,7 @@ client.on('message', async message => {
 
     if (command ==='play')
     {
-      let link = args.slice(1).join(" ");
+      let link = args.slice(1).join(/\s+/);
       if (!link)
       {
         return message.channel.send("Please provide a link of a video.");
