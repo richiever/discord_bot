@@ -55,6 +55,9 @@ client.on('message', message => {
           .addField("prune", "prunes an amount of messages, requires a integer (admin only)")
           .addField("ban", "Bans a person from the server (admin only)")
           .addField("you suck (no prefix)", "says 'well you swallow'")
+          .addField("play", "Plays music! Requires a youtube link of any sort")
+          .addField("stop", "Stops music")
+          .addField("skip", "Skips music")
           .setColor("#0000FF")
       return message.channel.send({ embed: help_embed });
     }
