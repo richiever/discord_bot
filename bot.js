@@ -1,7 +1,6 @@
 // require the discord.js module
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
-const { prefix } = require('./config.json');
 
 // create a new Discord client
 const client = new Discord.Client();
