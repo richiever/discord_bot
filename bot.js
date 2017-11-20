@@ -42,7 +42,7 @@ client.on('message', message => {
     {
 
       if (command === 'ping') {
-        return message.edit(`Pong! - ${Math.round(client.ping)} ms`);
+        return message.channel.send(`Pong! - ${Math.round(client.ping)} ms`);
       }
 
       else if(command === 'help'){
