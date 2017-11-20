@@ -30,7 +30,7 @@ var servers = {};
 var prefix = "--";
 
 
-client.on('message', message => {
+client.on('message', async message => {
     if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
