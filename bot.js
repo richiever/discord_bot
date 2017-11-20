@@ -27,18 +27,19 @@ client.on('ready', () => {
 // if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
 var key = process.env.secret_key;
 var servers = {};
+var prefix = "--";
 
 
 client.on('message', message => {
     if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
-    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     console.log(message.author.username + ": " + message.content);
 
     if (message.content === 'you suck') {
       return message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
     }
-    if (message.content.startsWith(`${prefix}`))
+    if (message.content.startsWith(prefix))
     {
 
       if (command === 'ping') {
