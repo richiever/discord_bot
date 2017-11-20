@@ -151,7 +151,7 @@ client.on('message', message => {
         return message.channel.send("Please provide a link of a video.");
       }
 
-      const songsInfo = await ytdl.getInfo(args[1]);
+      const songsInfo = await YTDL.getInfo(args[1]);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
         url: songsInfo.video_url
