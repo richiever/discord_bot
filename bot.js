@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
 const Util = Discord.Util;
+const YoutubeID = require('get-youtube-id');
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -151,10 +152,13 @@ client.on('message', async message => {
         return message.channel.send("Please provide a link of a video.");
       }
 
+      videoID = YoutubeID(link);
       const songsInfo = await YTDL.getInfo(link);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
-        url: songsInfo.video_url
+        description: Util.escapeMarkdown(songsInfo.description),
+        url: songsInfo.video_url,
+        thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`;
       };
 
       if (!message.member.voiceChannel)
@@ -178,6 +182,12 @@ client.on('message', async message => {
       }
 
       message.reply(`**${songs.title}** has been added to the queue!`);
+
+      let play_embed = new Discord.RichEmbed()
+          .setAuthor("Music")
+          .addField("Title", `${songs.title}`)
+          .addField("",`${songs.thumbnail}`, true)
+          .addField("Description", `${songs.description}`)
 
 
     }
