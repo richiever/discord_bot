@@ -158,7 +158,7 @@ client.on('message', async message => {
         title: Util.escapeMarkdown(songsInfo.title),
         description: Util.escapeMarkdown(songsInfo.description),
         url: songsInfo.video_url,
-        thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`;
+        thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
       };
 
       if (!message.member.voiceChannel)
