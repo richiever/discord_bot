@@ -146,14 +146,13 @@ client.on('message', async message => {
 
     if (command ==='play')
     {
-      let link = args.slice(1).join(/\s+/);
-      if (!args[1])
+      if (!args[0])
       {
         return message.channel.send("Please provide a link of a video.");
       }
 
-      videoID = YoutubeID(args[1]);
-      const songsInfo = await YTDL.getInfo(args[1]);
+      videoID = YoutubeID(args[0]);
+      const songsInfo = await YTDL.getInfo(args[0]);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
         description: Util.escapeMarkdown(songsInfo.description),
