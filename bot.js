@@ -1,6 +1,7 @@
 // require the discord.js module
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
+const { prefix } = require('./config.json');
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -25,33 +26,33 @@ client.on('ready', () => {
 
 // if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
 var key = process.env.secret_key;
-
-var prefix = "--";
 var servers = {};
 
 
 client.on('message', message => {
-    const args = message.content.slice(prefix).trim().split(/ +/g);
+    if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
+    const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
     console.log(message.author.username + ": " + message.content);
 
     if (message.content === 'you suck') {
       return message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
     }
-    if (message.content.startsWith("--"))
+    if (message.content.startsWith(`${prefix}`))
     {
 
-      if (message.content === 'ping') {
-        return message.channel.send('Pong!');
+      if (command === 'ping') {
+        return message.edit(`Pong! - ${Math.round(client.ping)} ms`);
       }
 
-      else if(message.content === 'help'){
+      else if(command === 'help'){
         console.log('reached line 31');
         let help_embed = new Discord.RichEmbed()
             .setTitle("Help")
             .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068")
             .addField("Prefix", "The prefix is: --")
             .addField("help", "The Help Command")
-            .addField("ping", "Sends 'Pong!'")
+            .addField("ping", "Replies with the bot's ping")
             .addField("kick", "Kick a certain user(admin only)")
             .addField("avatar", "Shows your avatar. @'ing someone will output nothing")
             .addField("prune", "prunes an amount of messages, requires a integer (admin only)")
@@ -64,7 +65,7 @@ client.on('message', message => {
         return message.channel.send({ embed: help_embed });
       }
 
-      else if (message.content === 'avatar') {
+      else if (command === 'avatar') {
       if (!message.mentions.users.size) {
         let avatar_embed = new Discord.RichEmbed()
             .setAuthor("Your avatar: ")
@@ -76,7 +77,7 @@ client.on('message', message => {
       // ...
   }
 
-      if (message.content.startsWith("kick")) {
+      if (command ==="kick") {
         let allowedRole = message.member.hasPermission("ADMINISTRATOR");
         if (!allowedRole) {
           return message.reply("You don't have the correct permissions to run this command! :hushed:");
@@ -102,7 +103,7 @@ client.on('message', message => {
           });
       }
 
-      if (message.content.startsWith("ban")) {
+      if (command ==="ban") {
         let allowedRole = message.member.hasPermission("ADMINISTRATOR");
         if (!allowedRole) {
           return message.reply("You don't have the correct permissions to run this command! :hushed:");
@@ -128,22 +129,20 @@ client.on('message', message => {
           });
       }
 
-      if (message.content.startsWith("prune")) {
+      if (command === "prune")) {
         let allowedRole = message.member.hasPermission("ADMINISTRATOR");
         if (!allowedRole) {
           return message.reply("You don't have the correct permissions to run this command! :hushed:");
         }
         try {
           let messagecount = args.slice(1).join(" ");
-          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-          message.channel.send("Pruned succesfully");
-          message.delete(1).then(msg => console.log(`Deleted message from ${msg.author}`));
+          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages), true);;
         } catch (e) {
           message.channel.send("Could not prune. Are you trying to prune messages older than 14 days?");
         }
     }
 
-    if (message.content.startsWith('play'))
+    if (command ==='play')
     {
       let link = args.slice(1).join(" ");
       if (!link)
@@ -174,13 +173,13 @@ client.on('message', message => {
 
     }
 
-    if (message.content === "skip")
+    if (command === "skip")
     {
       var server = servers[message.guild.id];
       if(server.dispatcher) server.dispatcher.end();
     }
 
-    if (message.content === "stop")
+    if (command === "stop")
     {
       var server = servers[message.guild.id];
       if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
