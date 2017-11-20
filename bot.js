@@ -129,7 +129,7 @@ client.on('message', message => {
           });
       }
 
-      if (command === "prune")) {
+      if (command === "prune") {
         let allowedRole = message.member.hasPermission("ADMINISTRATOR");
         if (!allowedRole) {
           return message.reply("You don't have the correct permissions to run this command! :hushed:");
