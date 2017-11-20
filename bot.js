@@ -184,7 +184,7 @@ client.on('message', async message => {
       let play_embed = new Discord.RichEmbed()
           .setAuthor("Music")
           .addField("Title", `${songs.title}`)
-          .addField("",`${songs.thumbnail}`, true)
+          .addField("Thumbnail: ",`${songs.thumbnail}`, true)
           .addField("Description", `${songs.description}`)
       return message.channel.send(play_embed);
 
