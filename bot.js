@@ -173,16 +173,12 @@ client.on('message', message => {
   {
     var server = servers[message.guild.id];
     if(server.dispatcher) server.dispatcher.end();
-
-    break;
   }
 
-  if (message.content === "skip")
+  if (message.content === "stop")
   {
     var server = servers[message.guild.id];
     if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-
-    break;
   }
 
 
