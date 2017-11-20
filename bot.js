@@ -1,9 +1,23 @@
 // require the discord.js module
 const Discord = require('discord.js');
+const YTDL = require('ytdl-core');
 
 // create a new Discord client
 const client = new Discord.Client();
 
+
+function play(connection, message) {
+  var server = servers[message.guild.id];
+
+  server.dispatcher = connection.playStream(YTDL(server.queue[0],[filter: "audioonly"]));
+
+  server.queue.shift();
+
+  server.dispatcher.on("end", function() {
+    if (server.queue[0]) play(connection, message);
+    else connection.disconnect();
+  })
+}
 client.on('ready', () => {
     client.user.setPresence({game: {name: "in a large galaxy, --help", type: 1}});
     console.log('Ready!');
@@ -126,7 +140,49 @@ client.on('message', message => {
 
   if (message.content.startsWith('play'))
   {
+    let link = args.slice(1).join(" ");
+    if (!link)
+    {
+      return message.channel.send("Please provide a link of a video.");
+    }
 
+    if (!message.member.voiceChannel)
+    {
+      return message.channel.send("You must join a voice channel.");
+    }
+
+    if (!servers[message.guild.id])
+    {
+      servers[message.guild.id] = {queue: []}
+    }
+    var server = servers[message.guild.id];
+
+    server.queue.push(link);
+
+    if (!message.guild.voiceConnection)
+    {
+      message.member.voiceChannel.join().then(function(connection) {
+        play(connection, message);
+      })
+    }
+
+
+  }
+
+  if (message.content === "skip")
+  {
+    var server = servers[message.guild.id];
+    if(server.dispatcher) server.dispatcher.end();
+
+    break;
+  }
+
+  if (message.content === "skip")
+  {
+    var server = servers[message.guild.id];
+    if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
+
+    break;
   }
 
 
