@@ -138,7 +138,7 @@ client.on('message', message => {
       }
   }
 
-  if (message.content.startsWith('play'))
+  if (message.content.startsWith('--play'))
   {
     let link = args.slice(1).join(" ");
     if (!link)
@@ -169,13 +169,13 @@ client.on('message', message => {
 
   }
 
-  if (message.content === "skip")
+  if (message.content === "--skip")
   {
     var server = servers[message.guild.id];
     if(server.dispatcher) server.dispatcher.end();
   }
 
-  if (message.content === "stop")
+  if (message.content === "--stop")
   {
     var server = servers[message.guild.id];
     if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
