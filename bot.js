@@ -144,6 +144,11 @@ client.on('message', async message => {
         }
     }
 
+    if (command == "invite")
+    {
+      return message.reply("You want to invite me to your server? Nice! Use this link: https://discordapp.com/oauth2/authorize?client_id=378677177413009408&scope=bot&permissions=2146958591");
+    }
+
     if (command ==='play')
     {
       let link = args[0];
