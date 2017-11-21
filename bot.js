@@ -20,6 +20,52 @@ function play(connection, message) {
     else connection.disconnect();
   })
 }
+
+function play_music(link)
+{
+  if (!link)
+  {
+    return message.channel.send("Please provide a link of a video.");
+  }
+
+  videoID = YoutubeID(link);
+  const songsInfo = await YTDL.getInfo(link);
+  const songs = {
+    title: Util.escapeMarkdown(songsInfo.title),
+    description: Util.escapeMarkdown(songsInfo.description),
+    url: songsInfo.video_url,
+    thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
+  };
+
+  if (!message.member.voiceChannel)
+  {
+    return message.channel.send("You must join a voice channel.");
+  }
+
+  if (!servers[message.guild.id])
+  {
+    servers[message.guild.id] = {queue: []}
+  }
+  var server = servers[message.guild.id];
+
+  server.queue.push(link);
+
+  if (!message.guild.voiceConnection)
+  {
+    message.member.voiceChannel.join().then(function(connection) {
+      play(connection, message);
+    })
+  }
+
+  let play_embed = new Discord.RichEmbed()
+      .setAuthor("Music")
+      .addField("Title", `${songs.title}`)
+      .addField("Description", `${songs.description}`)
+  message.channel.send("Thumbnail: " + `${songs.thumbnail}`)
+  return message.channel.send(play_embed);
+}
+
+
 client.on('ready', () => {
     client.user.setPresence({game: {name: "in a large galaxy, --help", type: 3}});
     console.log('Ready!');
@@ -29,6 +75,20 @@ client.on('ready', () => {
 var key = process.env.secret_key;
 var servers = {};
 var prefix = "--";
+
+function search_video(message, query) {
+	request("https://www.googleapis.com/youtube/v3/search?part=id&type=video&q=" + encodeURIComponent(query) + "&key=" + process.env.youtube_api_key, (error, response, body) => {
+		var json = JSON.parse(body);
+		if("error" in json) {
+			message.reply("An error has occurred: " + json.error.errors[0].message + " - " + json.error.errors[0].reason);
+		} else if(json.items.length === 0) {
+			message.reply("No videos found matching the search criteria.");
+		} else {
+      let linko = "https://www.youtube.com/watch?v=" + json.items[0].id.videoId;
+			search_video(linko);
+		}
+	})
+}
 
 
 client.on('message', async message => {
@@ -45,6 +105,11 @@ client.on('message', async message => {
 
       if (command === 'ping') {
         return message.channel.send(`Pong! - ${Math.round(client.ping)} ms`);
+      }
+
+      if (command === 'search_music')
+      {
+        search_video(args[0]);
       }
 
       else if(command === 'help'){
