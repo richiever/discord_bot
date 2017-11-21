@@ -146,13 +146,14 @@ client.on('message', async message => {
 
     if (command ==='play')
     {
-      if (!args[0])
+      let link = args[0];
+      if (!link)
       {
         return message.channel.send("Please provide a link of a video.");
       }
 
-      videoID = YoutubeID(args[0]);
-      const songsInfo = await YTDL.getInfo(args[0]);
+      videoID = YoutubeID(link);
+      const songsInfo = await YTDL.getInfo(link);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
         description: Util.escapeMarkdown(songsInfo.description),
@@ -171,7 +172,7 @@ client.on('message', async message => {
       }
       var server = servers[message.guild.id];
 
-      server.queue.push(args[1]);
+      server.queue.push(link);
 
       if (!message.guild.voiceConnection)
       {
