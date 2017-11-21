@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
 const Util = Discord.Util;
 const YoutubeID = require('get-youtube-id');
+const request = require("request");
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -85,7 +86,7 @@ function search_video(message, query) {
 			message.reply("No videos found matching the search criteria.");
 		} else {
       let linko = "https://www.youtube.com/watch?v=" + json.items[0].id.videoId;
-			search_video(linko);
+			play_music(linko);
 		}
 	})
 }
