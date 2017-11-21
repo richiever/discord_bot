@@ -29,7 +29,7 @@ function play_music(link)
   }
 
   videoID = YoutubeID(link);
-  const songsInfo = await YTDL.getInfo(link);
+  const songsInfo = YTDL.getInfo(link);
   const songs = {
     title: Util.escapeMarkdown(songsInfo.title),
     description: Util.escapeMarkdown(songsInfo.description),
