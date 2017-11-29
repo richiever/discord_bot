@@ -172,7 +172,7 @@ client.on('message', async message => {
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
         description: Util.escapeMarkdown(songsInfo.description),
-        url: songsInfo.video_url,
+        //url: songsInfo.video_url,
         thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
       };
 
