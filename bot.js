@@ -2,7 +2,8 @@
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
 const Util = Discord.Util;
-const YoutubeID = require('get-youtube-id');
+const YoutubeID = require('simple-youtube-api');
+const YouTube = require('youtube-node');
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -30,10 +31,10 @@ client.on('ready', () => {
 var key = process.env.secret_key;
 var servers = {};
 var prefix = "--";
-
+var youtube = new YouTube(process.env.youtube_api_key);
 
 client.on('message', async message => {
-    if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
+    if(message.channel.type === 'dm' || !message.author.bot) return message.reply("You cant use me in PM.");
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     console.log(message.author.username + ": " + message.content);
@@ -157,9 +158,19 @@ client.on('message', async message => {
       {
         return message.channel.send("Please provide a link of a video.");
       }
-
-      videoID = YoutubeID(link);
-      const songsInfo = await YTDL.getInfo(link);
+      var song = null;
+      try
+      {
+        var song = await youtube.getVideo(link);
+      } catch (error)
+      {
+        var song = await youtube.searchVideos(link, 1);
+      } catch (error)
+      {
+        return message.reply("Could not play song.")
+      }
+      videoID = YoutubeID(song);
+      const songsInfo = await YTDL.getInfo(song);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
         description: Util.escapeMarkdown(songsInfo.description),
