@@ -34,7 +34,7 @@ var prefix = "--";
 var youtube = new YouTube(process.env.youtube_api_key);
 
 client.on('message', async message => {
-    if(message.channel.type === 'dm' || !message.author.bot) return message.reply("You cant use me in PM.");
+    if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     console.log(message.author.username + ": " + message.content);
