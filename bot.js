@@ -167,7 +167,7 @@ client.on('message', async message => {
       {
         var song = await youtube.searchVideos(link, 1);
       }
-      videoID = YoutubeID(song);
+      videoID = YoutubeIDFinder(song);
       const songsInfo = await YTDL.getInfo(song);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
