@@ -32,7 +32,7 @@ var key = process.env.secret_key;
 var servers = {};
 var prefix = "--";
 var youtube = new YoutubeSearch(process.env.youtube_api_key);
-var youtubeID = new YoutubeID();
+var youtubeID = new YoutubeIDFinder();
 
 client.on('message', async message => {
     if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
