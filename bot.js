@@ -159,8 +159,8 @@ client.on('message', async message => {
       {
         return message.channel.send("Please provide a link of a video.");
       }
-      videoID = YoutubeIDFinder(song);
-      const songsInfo = await YTDL.getInfo(song);
+      videoID = YoutubeIDFinder(link);
+      const songsInfo = await YTDL.getInfo(link);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
         description: Util.escapeMarkdown(songsInfo.description),
