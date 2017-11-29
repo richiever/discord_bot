@@ -159,20 +159,12 @@ client.on('message', async message => {
       {
         return message.channel.send("Please provide a link of a video.");
       }
-      var song = null;
-      try
-      {
-        var song = await youtube.getVideo(link);
-      } catch (error)
-      {
-        var song = await youtube.searchVideos(link, 1);
-      }
       videoID = YoutubeIDFinder(song);
       const songsInfo = await YTDL.getInfo(song);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
         description: Util.escapeMarkdown(songsInfo.description),
-        //url: songsInfo.video_url,
+        url: songsInfo.video_url,
         thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
       };
 
