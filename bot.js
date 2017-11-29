@@ -165,9 +165,6 @@ client.on('message', async message => {
       } catch (error)
       {
         var song = await youtube.searchVideos(link, 1);
-      } catch (error)
-      {
-        return message.reply("Could not play song.")
       }
       videoID = YoutubeID(song);
       const songsInfo = await YTDL.getInfo(song);
