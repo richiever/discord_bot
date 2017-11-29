@@ -2,7 +2,8 @@
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
 const Util = Discord.Util;
-const YoutubeID = require('simple-youtube-api');
+const YoutubeSearch = require('simple-youtube-api');
+const YoutubeIDFinder = require('get-youtube-id');
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -30,7 +31,8 @@ client.on('ready', () => {
 var key = process.env.secret_key;
 var servers = {};
 var prefix = "--";
-var youtube = new YoutubeID(process.env.youtube_api_key);
+var youtube = new YoutubeSearch(process.env.youtube_api_key);
+var youtubeID = new YoutubeID();
 
 client.on('message', async message => {
     if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
