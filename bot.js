@@ -214,16 +214,14 @@ client.on('message', async message => {
 });
 
 client.on("guildMemberAdd", (guild, member) => {
-
-    //log the join event
-    console.log(member.user.username + " joined " + guild.name);
-
+  
     // Send the message to a designated channel on a server:
     var channel = member.guild.channels.find('name', 'join-log');
     // Do nothing if the channel wasn't found on this server
     if (!channel)
     {
-      channel = guild.createChannel("join-log");
+      guild.createChannel("join-log");
+      return;
     }
     // Send the message, mentioning the member
     channel.send(`Welcome to the server, ${member}!`);
