@@ -35,7 +35,10 @@ var youtube = new YoutubeSearch(process.env.youtube_api_key);
 var YoutubeID = new YoutubeIDFinder();
 
 client.on('message', async message => {
-    if(message.channel.type === 'dm') return message.reply("You cant use me in PM.");
+    if(message.channel.type === 'dm')
+    {
+      if(!message.author.bot) return message.reply("You cant use me in PM.");
+    }
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     console.log(message.author.username + ": " + message.content);
