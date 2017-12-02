@@ -213,14 +213,13 @@ client.on('message', async message => {
 }
 });
 
-client.on("guildMemberAdd", (guild, member) => {
-  
+client.on("guildMemberAdd", (guild, member, user) => {
+
     // Send the message to a designated channel on a server:
     var channel = member.guild.channels.find('name', 'join-log');
     // Do nothing if the channel wasn't found on this server
     if (!channel)
     {
-      guild.createChannel("join-log");
       return;
     }
     // Send the message, mentioning the member
