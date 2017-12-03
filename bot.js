@@ -163,13 +163,16 @@ client.on('message', async message => {
       let video_arg = args[0];
       let link;
       let videoID;
+
+      console.log("passed 167");
       if (!video_arg)
       {
         return message.channel.send("Please provide a link / search term of a video.");
       }
+      console.log("passed 171");
       YoutubeSearcher(link, opts, function(err, results) {
         if(err) return console.log(err);
-      
+        console.log("passed 174");
         // finds id of video
         console.dir(results[0].id);
         videoID = results[0].id;
@@ -177,6 +180,17 @@ client.on('message', async message => {
         // find link of video
         console.dir(results[0].link);
         link = results[0].link[0];
+
+
+        const songsInfo = await YTDL.getInfo(link);
+        console.log("passed 185");
+        const songs = {
+          title: Util.escapeMarkdown(songsInfo.title),
+          description: Util.escapeMarkdown(songsInfo.description),
+          url: link,
+          thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
+        };
+        console.log("passed 192");
       });
 
       if (!message.member.voiceChannel)
