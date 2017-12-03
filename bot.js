@@ -2,8 +2,6 @@
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
 const Util = Discord.Util;
-const YoutubeSearch = require('simple-youtube-api');
-const YoutubeIDFinder = require('get-youtube-id');
 const YoutubeSearcher = require('youtube-search');
 
 // create a new Discord client
@@ -32,7 +30,6 @@ client.on('ready', () => {
 var key = process.env.secret_key;
 var servers = {};
 var prefix = "--";
-var YoutubeID = new YoutubeIDFinder();
 var opts = {
   maxResults: 1,
   key: 'AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM',
@@ -179,15 +176,8 @@ client.on('message', async message => {
 
         // find link of video
         console.dir(results[0].link);
-        link = results[0].link;
+        link = results[0].link[0];
       });
-      const songsInfo = await YTDL.getInfo(link);
-      const songs = {
-        title: Util.escapeMarkdown(songsInfo.title),
-        description: Util.escapeMarkdown(songsInfo.description),
-        url: link,
-        thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
-      };
 
       if (!message.member.voiceChannel)
       {
