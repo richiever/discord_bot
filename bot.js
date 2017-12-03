@@ -162,6 +162,7 @@ client.on('message', async message => {
     if (command ==='play')
     {
       let link = args[0];
+      let videoID;
 
       if (!link)
       {
@@ -189,7 +190,7 @@ client.on('message', async message => {
         url: link,
         thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
       };
-      
+
       if (!message.member.voiceChannel)
       {
         return message.reply("Please join a voice channel!");
@@ -213,7 +214,6 @@ client.on('message', async message => {
       // let video_arg = args[0];
       // console.log(video_arg);
       // let link;
-      let videoID;
 
       // console.log("passed 167");
       // if (!video_arg)
