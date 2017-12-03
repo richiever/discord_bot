@@ -70,9 +70,9 @@ client.on('message', async message => {
             .addField("prune", "prunes an amount of messages, requires a integer (admin only)")
             .addField("ban", "Bans a person from the server (admin only)")
             .addField("you suck (no prefix)", "says 'well you swallow'")
-            .addField("play", "Plays music! Requires a youtube link of any sort")
-            .addField("stop", "Stops music")
-            .addField("skip", "Skips music")
+            //.addField("play", "Plays music! Requires a youtube link of any sort")
+            //.addField("stop", "Stops music")
+            //.addField("skip", "Skips music")
             .setColor("#0000FF")
         return message.channel.send({ embed: help_embed });
       }
@@ -161,48 +161,21 @@ client.on('message', async message => {
 
     if (command ==='play')
     {
-      let video_arg = args[0];
-      console.log(video_arg);
-      let link;
-      let videoID;
+      let link = args[0];
 
-      console.log("passed 167");
-      if (!video_arg)
+      if (!link)
       {
-        return message.channel.send("Please provide a link / search term of a video.");
+        return message.reply("Please provide a link");
       }
-      console.log("passed 171");
-      YoutubeSearcher(video_arg, opts, function(err, results) {
-        if(err) return console.log(err);
-        console.log("passed 174");
-        // finds id of video
-        console.dir(results[0].id);
-        videoID = results[0].id;
-
-        // find link of video
-        console.dir(results[0].link);
-        link = results[0].link[0];
-      });
-
-      const songsInfo = await YTDL.getInfo(link);
-      console.log("passed 187");
-      console.log("passed 185");
-      const songs = {
-        title: Util.escapeMarkdown(songsInfo.title),
-        description: Util.escapeMarkdown(songsInfo.description),
-        url: link,
-        thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
-      };
-      console.log("passed 192");
 
       if (!message.member.voiceChannel)
       {
-        return message.channel.send("You must join a voice channel.");
+        return message.reply("Please join a voice channel!");
       }
 
       if (!servers[message.guild.id])
       {
-        servers[message.guild.id] = {queue: []}
+         servers[message.guild.id] = {queue: []};
       }
       var server = servers[message.guild.id];
 
@@ -210,17 +183,71 @@ client.on('message', async message => {
 
       if (!message.guild.voiceConnection)
       {
-        message.member.voiceChannel.join().then(function(connection) {
+        message.member.voiceChannel.join().then(function(connection){
           play(connection, message);
-        })
+        });
       }
 
-      let play_embed = new Discord.RichEmbed()
-          .setAuthor("Music")
-          .addField("Title", `${songs.title}`)
-          .addField("Description", `${songs.description}`)
-      message.channel.send("Thumbnail: " + `${songs.thumbnail}`)
-      return message.channel.send(play_embed);
+      // let video_arg = args[0];
+      // console.log(video_arg);
+      // let link;
+      // let videoID;
+
+      // console.log("passed 167");
+      // if (!video_arg)
+      // {
+      //   return message.channel.send("Please provide a link / search term of a video.");
+      // }
+      // console.log("passed 171");
+      // YoutubeSearcher(video_arg, opts, function(err, results) {
+      //   if(err) return console.log(err);
+      //   console.log("passed 174");
+      //   // finds id of video
+      //   console.dir(results[0].id);
+      //   videoID = results[0].id;
+
+      //   // find link of video
+      //   console.dir(results[0].link);
+      //   link = results[0].link[0];
+      // });
+
+      // const songsInfo = await YTDL.getInfo(link);
+      // console.log("passed 187");
+      // console.log("passed 185");
+      // const songs = {
+      //   title: Util.escapeMarkdown(songsInfo.title),
+      //   description: Util.escapeMarkdown(songsInfo.description),
+      //   url: link,
+      //   thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
+      // };
+      // console.log("passed 192");
+
+      // if (!message.member.voiceChannel)
+      // {
+      //   return message.channel.send("You must join a voice channel.");
+      // }
+
+      // if (!servers[message.guild.id])
+      // {
+      //   servers[message.guild.id] = {queue: []}
+      // }
+      // var server = servers[message.guild.id];
+
+      // server.queue.push(link);
+
+      // if (!message.guild.voiceConnection)
+      // {
+      //   message.member.voiceChannel.join().then(function(connection) {
+      //     play(connection, message);
+      //   })
+      // }
+
+      // let play_embed = new Discord.RichEmbed()
+      //     .setAuthor("Music")
+      //     .addField("Title", `${songs.title}`)
+      //     .addField("Description", `${songs.description}`)
+      // message.channel.send("Thumbnail: " + `${songs.thumbnail}`)
+      // return message.channel.send(play_embed);
 
 
     }
