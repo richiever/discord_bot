@@ -27,7 +27,7 @@ function play(connection, message) {
 client.on('ready', () => {
     client.user.setPresence({game: {name: "in a large galaxy, --help", type: 3}});
     console.log('Ready!');
-    googleapis.client.setApiKey('AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM');
+    google.client.setApiKey('AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM');
 });
 
 // if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
