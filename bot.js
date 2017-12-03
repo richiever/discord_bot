@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
 const Util = Discord.Util;
 const YoutubeSearcher = require('youtube-search');
+const fs = require('fs');
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -184,6 +185,7 @@ client.on('message', async message => {
       });
 
       const songsInfo = await YTDL.getInfo(link);
+      console.log("passed 187");
       console.log("passed 185");
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
