@@ -171,7 +171,7 @@ client.on('message', async message => {
         return message.channel.send("Please provide a link / search term of a video.");
       }
       console.log("passed 171");
-      YoutubeSearcher(link, opts, function(err, results) {
+      YoutubeSearcher(video_arg, opts, function(err, results) {
         if(err) return console.log(err);
         console.log("passed 174");
         // finds id of video
@@ -183,7 +183,7 @@ client.on('message', async message => {
         link = results[0].link[0];
       });
 
-      const songsInfo = await YTDL.getInfo(video_arg);
+      const songsInfo = await YTDL.getInfo(link);
       console.log("passed 185");
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
