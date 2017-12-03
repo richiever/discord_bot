@@ -191,7 +191,7 @@ client.on('message', async message => {
       // let video_arg = args[0];
       // console.log(video_arg);
       // let link;
-      // let videoID;
+      let videoID;
 
       // console.log("passed 167");
       // if (!video_arg)
@@ -199,17 +199,17 @@ client.on('message', async message => {
       //   return message.channel.send("Please provide a link / search term of a video.");
       // }
       // console.log("passed 171");
-      // YoutubeSearcher(video_arg, opts, function(err, results) {
-      //   if(err) return console.log(err);
-      //   console.log("passed 174");
-      //   // finds id of video
-      //   console.dir(results[0].id);
-      //   videoID = results[0].id;
+      YoutubeSearcher(video_arg, opts, function(err, results) {
+         if(err) return console.log(err);
+         console.log("passed 174");
+         // finds id of video
+         console.dir(results[0].id);
+         videoID = results[0].id;
 
-      //   // find link of video
-      //   console.dir(results[0].link);
-      //   link = results[0].link[0];
-      // });
+         // find link of video
+         console.dir(results[0].link);
+         link = results[0].link[0];
+       });
 
        const songsInfo = await YTDL.getInfo(link);
        console.log("passed 187");
