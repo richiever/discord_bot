@@ -144,7 +144,7 @@ client.on('message', async message => {
         }
         try {
           let messagecount = args.slice(1).join(" ");
-          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages), true);;
+          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));;
         } catch (e) {
           message.channel.send("Could not prune. Are you trying to prune messages older than 14 days?");
         }
