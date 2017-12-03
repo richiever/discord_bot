@@ -211,43 +211,22 @@ client.on('message', async message => {
       //   link = results[0].link[0];
       // });
 
-      // const songsInfo = await YTDL.getInfo(link);
-      // console.log("passed 187");
-      // console.log("passed 185");
-      // const songs = {
-      //   title: Util.escapeMarkdown(songsInfo.title),
-      //   description: Util.escapeMarkdown(songsInfo.description),
-      //   url: link,
-      //   thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
-      // };
-      // console.log("passed 192");
+       const songsInfo = await YTDL.getInfo(link);
+       console.log("passed 187");
+       console.log("passed 185");
+       const songs = {
+         title: Util.escapeMarkdown(songsInfo.title),
+         description: Util.escapeMarkdown(songsInfo.description),
+         url: link,
+         thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
+       };
 
-      // if (!message.member.voiceChannel)
-      // {
-      //   return message.channel.send("You must join a voice channel.");
-      // }
-
-      // if (!servers[message.guild.id])
-      // {
-      //   servers[message.guild.id] = {queue: []}
-      // }
-      // var server = servers[message.guild.id];
-
-      // server.queue.push(link);
-
-      // if (!message.guild.voiceConnection)
-      // {
-      //   message.member.voiceChannel.join().then(function(connection) {
-      //     play(connection, message);
-      //   })
-      // }
-
-      // let play_embed = new Discord.RichEmbed()
-      //     .setAuthor("Music")
-      //     .addField("Title", `${songs.title}`)
-      //     .addField("Description", `${songs.description}`)
-      // message.channel.send("Thumbnail: " + `${songs.thumbnail}`)
-      // return message.channel.send(play_embed);
+       let play_embed = new Discord.RichEmbed()
+           .setAuthor("Music")
+           .addField("Title", `${songs.title}`)
+           .addField("Description", `${songs.description}`)
+      message.channel.send("Thumbnail: " + `${songs.thumbnail}`)
+      return message.channel.send(play_embed);
 
 
     }
