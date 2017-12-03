@@ -180,18 +180,17 @@ client.on('message', async message => {
         // find link of video
         console.dir(results[0].link);
         link = results[0].link[0];
-
-
-        const songsInfo = await YTDL.getInfo(link);
-        console.log("passed 185");
-        const songs = {
-          title: Util.escapeMarkdown(songsInfo.title),
-          description: Util.escapeMarkdown(songsInfo.description),
-          url: link,
-          thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
-        };
-        console.log("passed 192");
       });
+
+      const songsInfo = await YTDL.getInfo(link);
+      console.log("passed 185");
+      const songs = {
+        title: Util.escapeMarkdown(songsInfo.title),
+        description: Util.escapeMarkdown(songsInfo.description),
+        url: link,
+        thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
+      };
+      console.log("passed 192");
 
       if (!message.member.voiceChannel)
       {
