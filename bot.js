@@ -4,6 +4,7 @@ const YTDL = require('ytdl-core');
 const Util = Discord.Util;
 const YoutubeSearch = require('simple-youtube-api');
 const YoutubeIDFinder = require('get-youtube-id');
+const YoutubeSearcher = require('youtube-search');
 
 // create a new Discord client
 const client = new Discord.Client();
@@ -31,8 +32,13 @@ client.on('ready', () => {
 var key = process.env.secret_key;
 var servers = {};
 var prefix = "--";
-var youtube = new YoutubeSearch(process.env.youtube_api_key);
 var YoutubeID = new YoutubeIDFinder();
+var opts = {
+  maxResults: 1,
+  key: 'AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM',
+  kind: "youtube#video"
+};
+
 
 client.on('message', async message => {
     if(message.channel.type === 'dm')
@@ -157,12 +163,24 @@ client.on('message', async message => {
 
     if (command ==='play')
     {
-      let link = args[0];
-      if (!link)
+      let video_arg = args[0];
+      let link;
+      let videoID;
+      if (!video_arg)
       {
-        return message.channel.send("Please provide a link of a video.");
+        return message.channel.send("Please provide a link / search term of a video.");
       }
-      videoID = YoutubeIDFinder(link);
+      YoutubeSearcher(link, opts, function(err, results) {
+        if(err) return console.log(err);
+      
+        // finds id of video
+        console.dir(results[0].id);
+        videoID = results[0].id;
+
+        // find link of video
+        console.dir(results[0].link);
+        link = results[0].link;
+      });
       const songsInfo = await YTDL.getInfo(link);
       const songs = {
         title: Util.escapeMarkdown(songsInfo.title),
