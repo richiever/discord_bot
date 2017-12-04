@@ -191,7 +191,7 @@ client.on('message', async message => {
           safeSearch: 'moderate',
       });
         
-        console.log(query);
+        console.log(query[0].link);
       });
 
       const songsInfo = await YTDL.getInfo(link);
