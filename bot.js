@@ -1,5 +1,3 @@
-import { games } from 'googleapis/apis';
-
 // require the discord.js module
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
