@@ -1,3 +1,5 @@
+import { games } from 'googleapis/apis';
+
 // require the discord.js module
 const Discord = require('discord.js');
 const YTDL = require('ytdl-core');
@@ -181,7 +183,17 @@ client.on('message', async message => {
 
         // find link of video
         console.dir(results[0].link);
-        link = results[0].link;
+        // link = results[0].link[0];
+
+        let query = youtube.search.list({
+          part: 'snippet',
+          type: 'video',
+          q: link,
+          maxResults: 1,
+          safeSearch: 'moderate',
+      });
+        let results = JSON.parse(query);
+        console.log("Video ID: " + results.link);
       });
 
       const songsInfo = await YTDL.getInfo(link);
