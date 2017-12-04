@@ -181,17 +181,7 @@ client.on('message', async message => {
 
         // find link of video
         console.dir(results[0].link);
-        // link = results[0].link[0];
-
-        let query = youtube.search.list({
-          part: 'snippet',
-          type: 'video',
-          q: link,
-          maxResults: 1,
-          safeSearch: 'moderate',
-      });
-        
-        console.log("Video ID: " + query.items[0].id.videoId);
+        link = results[0].link;
       });
 
       const songsInfo = await YTDL.getInfo(link);
