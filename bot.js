@@ -191,7 +191,7 @@ client.on('message', async message => {
           safeSearch: 'moderate',
       });
         
-        console.log(query[0].link);
+        console.log("Video ID: " + query.items[0].id.videoId);
       });
 
       const songsInfo = await YTDL.getInfo(link);
