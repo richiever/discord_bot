@@ -27,12 +27,11 @@ function play(connection, message) {
 client.on('ready', () => {
     client.user.setPresence({game: {name: "in a large galaxy, --help", type: 3}});
     console.log('Ready!');
-    google.client.setApiKey('AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM');
 });
 
 // if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
 var key = process.env.secret_key;
-var youtube = google.youtube('v3');
+var youtube = google.youtube({ version: 'v3', auth: 'AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM' });;
 var servers = {};
 var prefix = "--";
 var opts = {
@@ -184,7 +183,13 @@ client.on('message', async message => {
         console.dir(results[0].link);
         // link = results[0].link[0];
 
-        let query = youtube.search.list({part:'snippet', q: link, maxResults: 1});
+        let query = youtube.search.list({
+          part: 'snippet',
+          type: 'video',
+          q: link,
+          maxResults: 1,
+          safeSearch: 'moderate',
+      });
         
         console.log(query);
       });
