@@ -190,8 +190,7 @@ client.on('message', async message => {
           maxResults: 1,
           safeSearch: 'moderate',
       });
-        let result = JSON.parse(query);
-        console.log("Video ID: " + result.link);
+        console.log("Video ID: " + query.link);
       });
 
       const songsInfo = await YTDL.getInfo(link);
