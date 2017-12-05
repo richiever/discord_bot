@@ -172,7 +172,7 @@ client.on('message', async message => {
         return message.reply("Please provide a link");
       }
 
-      YoutubeSearcher(args[0], opts, function(err, results) {
+      YoutubeSearcher("despacito", opts, function(err, results) {
         if(err) return console.log(err);
         console.log("passed 174");
         // finds id of video
