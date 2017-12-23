@@ -57,7 +57,7 @@ client.on('message', async message => {
     {
 
       if (command === 'ping') {
-        for (const channel of message.guild.channels.value()) 
+        for (const channel of message.guild.channels.values()) 
         {
           console.log(channel.id);
         }
