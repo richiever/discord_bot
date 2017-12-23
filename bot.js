@@ -42,11 +42,15 @@ var opts = {
 
 function getChannelIDs(fetch) 
 {
+  var array = [];
   let channels = client.channels.get(fetch);
   for (const channel of channels.values()) 
   {
+    array.push(channel.id);
     console.log(channel.id);
   }
+
+  return array;
 }
 
 
