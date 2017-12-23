@@ -57,7 +57,7 @@ client.on('message', async message => {
     {
 
       if (command === 'ping') {
-        let chanels = message.guild.channels.array;
+        let chanels = message.guild.channels;
         for (channel in chanels)
         {
           message.send(channel);
