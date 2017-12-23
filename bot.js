@@ -1,296 +1,223 @@
-// require the discord.js module
-const Discord = require('discord.js');
-const YTDL = require('ytdl-core');
-const Util = Discord.Util;
-const YoutubeSearcher = require('youtube-search');
-const fs = require('fs');
-const google = require('googleapis');
-
-
-// create a new Discord client
+const Discord = require("discord.js");
 const client = new Discord.Client();
 
-
-function play(connection, message) {
-  var server = servers[message.guild.id];
-
-  server.dispatcher = connection.playStream(YTDL(server.queue[0],{filter: "audioonly"}));
-
-  server.queue.shift();
-
-  server.dispatcher.on("end", function() {
-    if (server.queue[0]) play(connection, message);
-    else connection.disconnect();
-  })
-}
-
 client.on('ready', () => {
-    client.user.setPresence({game: {name: "in a large galaxy, --help", type: 3}});
-    console.log('Ready!');
+  console.log(`Logged in as ${client.user.tag}!`);
+    client.user.setGame(`in ${client.guilds.size} servers | $help`)
+  });
+
+const prefix = "$"
+
+
+
+client.on('guildMemberAdd', member => {
+  member.send("welcome to the server!")
+  });
+
+client.on('message', msg => {
+  if (msg.content === '$cats') {
+    msg.reply('http://apopka-1x1yusplq.stackpathdns.com/wp-content/uploads/2017/10/persian-cats-and-kittens-1.jpg');
+  }
+  if (msg.content === '$christmas with paradox') {
+    msg.reply('https://cdn.discordapp.com/attachments/381004839502741519/387135800715771904/Blank-background_-_Copy.jpg');
+  }
+  if (msg.content === '$dog') {
+    msg.reply('https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi');
+  }
+  if (msg.content === '$dat boi') {
+    msg.reply('https://vignette.wikia.nocookie.net/meme/images/9/9a/Dat_boi.gif/revision/latest?cb=20161020213949');
+  }
+  if (msg.content === '$claydol') {
+    msg.reply('http://i0.kym-cdn.com/photos/images/original/001/103/070/2d1.gif');
+  }
+  if (msg.content === '$pikachu') {
+    msg.reply('http://www.pokestadium.com/sprites/xy/pikachu.gif http://www.pokestadium.com/sprites/xy/pikachu-f-3.gif');
+  }
+    if (msg.content === '$pokemon') {
+      var replies = ["http://www.pokestadium.com/sprites/xy/pikachu.gif", "http://www.pokestadium.com/sprites/xy/rhyhorn.gif","http://www.pokestadium.com/sprites/xy/diglett.gif","http://www.pokestadium.com/sprites/xy/bulbasaur.gif","http://www.pokestadium.com/sprites/xy/arceus.gif","http://www.pokestadium.com/sprites/xy/pidgey.gif","http://www.pokestadium.com/sprites/xy/rattata.gif","http://www.pokestadium.com/sprites/xy/wurmple.gif","http://www.pokestadium.com/sprites/xy/beedrill.gif","http://www.pokestadium.com/sprites/xy/doduo.gif","http://www.pokestadium.com/sprites/xy/caterpie.gif","http://www.pokestadium.com/sprites/xy/weedle.gif","http://www.pokestadium.com/sprites/xy/abra.gif","http://www.pokestadium.com/sprites/xy/nidoranm.gif","http://www.pokestadium.com/sprites/xy/nidoranf.gif","http://www.pokestadium.com/sprites/xy/charmander.gif","http://www.pokestadium.com/sprites/xy/squirtle-2.gif","http://www.pokestadium.com/sprites/xy/raticate.gif",]
+  var reply = replies[Math.floor(Math.random()* replies.length)]
+  msg.reply(reply)
+    }
+    if (msg.content === '$help') {
+      msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\nban:admin only!bans someone\nmute:admin only!mutes someone\npurge:(admin only!bulkdeletes loads of messages)\nchristmas with paradox: merry christmas with paradox!\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
+    }
 });
 
-// if you're actually trying to get ahold of my token, it won't work. Happened once already >:(
-var key = process.env.secret_key;
-var youtube = google.youtube({ version: 'v3', auth: 'AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM' });;
-var servers = {};
-var prefix = "--";
-var opts = {
-  maxResults: 1,
-  key: 'AIzaSyDm8CoTi5AAspabCDOfOrp4aAlKZIlrLyM',
-  kind: "youtube#video"
-};
+client.on("message", async message => {
+  let messageArray = message.content.split(" ");
+  let command = messageArray[0];
+  const args = messageArray.splice(1);
+  if(!command.startsWith(prefix)) return;
 
-function getChannelIDs(fetch) 
-{
-  var array = [];
-  let channels = client.channels.get(fetch);
-  for (const channel of channels.values()) 
-  {
-    array.push(channel.id);
-    console.log(channel.id);
+  if(command === `${prefix}mute`) {
+      const Discord = require('discord.js');
+  const fs = require('fs');
+  const embed2 = new Discord.RichEmbed()
+  .setColor("#C0392B")
+  .addField("Mute Command", `**ERROR:** You don't have permission to run this command!`)
+  .setFooter("paradox - by richie");
+
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send({embed: embed2});
+
+      let reason = args.slice(1).join(" ");
+
+      let role2 = message.guild.roles.find(r => r.name === "unmutable");
+
+
+
+     let toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+     const embed3 = new Discord.RichEmbed()
+     .setColor("#C0392B")
+     .addField("Mute Command", `**Usage:** $mute {user} {reason}`)
+     .setFooter("paradox - by richie");
+
+     if(!toMute) return message.reply({embed: embed3});
+     const embed4 = new Discord.RichEmbed()
+     .setColor("#C0392B")
+     .addField("Mute Command", `**ERROR:** This user is unmutable!`)
+     .setFooter("paradox Bot - by richie");
+
+     if(toMute.roles.has(role2.id)) return message.reply({embed: embed4});
+
+
+     const embed5 = new Discord.RichEmbed()
+     .setColor("#C0392B")
+     .addField("Mute Command", `**ERROR:** You cannot mute yourself!`)
+     .setFooter("richie's Bot - by richie");
+     if(toMute.id === message.author.id) return message.reply({embed: embed5});
+     const embed1 = new Discord.RichEmbed()
+     .setColor("#C0392B")
+     .addField("Mute Command", `**ERROR:** You cannot mute a user that has a higher role than you!`)
+     .setFooter("paradox Bot - by richie");
+     if(toMute.highestRole.position >= message.member.highestRole.position) return message.reply({embed: embed1});
+     if(!reason) return message.reply({embed: embed3});
+
+     const embed = new Discord.RichEmbed()
+
+     .setColor("#C0392B")
+     .addField("Mute Command", `${toMute} has been muted!`)
+     .addField("Reason", `${reason}`)
+
+     .setFooter("paradox - by richie");
+     message.channel.send({embed: embed});
+
+      toMute.addRole(role);
+
+
+
+
+
+     return;
   }
+  if(command === `${prefix}kick`) {
+   const Discord = require('discord.js');
+ const embed2 = new Discord.RichEmbed()
+ .setColor("#C0392B")
+ .addField("Kick Command", `**ERROR:** You don't have permission to run this command!`)
+ .setFooter("paradox - by richie");
+ if(!message.member.hasPermission("KICK_MEMBERS")) return message.channel.send({embed: embed2});
 
-  return array;
+ let role = message.guild.roles.find(r => r.name === "unkickable");
+ let reason = args.slice(1).join(' ');
+ let user = message.guild.member(message.mentions.users.first());
+ let toKick = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+ const embed3 = new Discord.RichEmbed()
+ .setColor("#C0392B")
+ .addField("Kick Command", `**ERROR:** This person is unkickable!`)
+ .setFooter("paradox Bot - by richie");
+ const embed1 = new Discord.RichEmbed()
+ .setColor("#C0392B")
+ .addField("Kick Command", `**Usage:** $kick {user} {reason}`)
+ .setFooter("paradox - by richie");
+if(!toKick) return message.reply({embed: embed1});
+ if(user.roles.has(role.id)) return message.reply({embed: embed3});
+
+
+
+ const embed5 = new Discord.RichEmbed()
+ .setColor("#C0392B")
+ .addField("Kick Command", `**ERROR:** You can't kick yourself!`)
+ .setFooter("paradox - by richie");
+ const embed6 = new Discord.RichEmbed()
+ .setColor("#C0392B")
+ .addField("Kick Command", `**ERROR:** You cannot kick someone that has a higher role than you!`)
+ .setFooter("paradox - by richie");
+ if(toKick.id === message.author.id) return message.reply({embed: embed5});
+ if(toKick.highestRole.position >= message.member.highestRole.position) return message.reply({embed: embed6});
+ if(reason.length < 1) return message.reply({embed: embed1});
+
+ const embed = new Discord.RichEmbed()
+
+ .setTitle("You have been kicked from the  Discord server!")
+
+ .addField("Person that kicked you:", `${message.author.username}`)
+
+ .addField("Reason:", `${reason}`)
+
+ .setFooter("paradox - by richie");
+  await bot.users.get(user.id).send({embed: embed});
+
+
+
+ toKick.kick();
+
+ message.reply(":white_check_mark: I have **kicked** the user!");
+
+
+
+
+ return;
+
+ }
+ if(command === `${prefix}ban`) {
+       const Discord = require('discord.js');
+const embed2 = new Discord.RichEmbed()
+.setColor("#C0392B")
+.addField("Ban Command", `**ERROR:** You don't have permission to run this command!`)
+.setFooter("paradox - by richie");
+if(!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send({embed: embed2});
+const embed1 = new Discord.RichEmbed()
+.setColor("#C0392B")
+.addField("Ban Command", `**Usage:** $ban {user} {reason}`)
+.setFooter("paradox - by richie");
+let reason = args.slice(1).join(' ');
+let user = message.mentions.users.first();
+let toBan = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+if(!toBan) return message.reply({embed: embed1});
+
+if(toBan.highestRole.position >= message.member.highestRole.position) return message.reply("You cannot ban a user that **has a higher or has the same role as you!**");
+if(toBan.id === message.author.id) return message.reply("you cannot ban yourself.");
+if(reason.length < 1) return message.reply({embed: embed1});
+
+const embed = new Discord.RichEmbed()
+
+.setTitle("You have been kicked from the this Discord server!")
+
+.addField("Person that banned you:", `${message.author.username}`)
+
+.addField("Reason:", `${reason}`)
+
+.setFooter("paradox - by richie");
+await bot.users.get(user.id).send({embed: embed});
+
+
+
+message.mentions.members.first().ban();
+
+message.reply(":white_check_mark: This user has been banned!")
+
+if (message.content == "$purge") {
+    if (message.member.hasPermission("MANAGE_MESSAGES")) {
+        message.channel.fetchMessages()
+           .then(function(list){
+                message.channel.bulkDelete(list);
+            }, function(err){message.channel.send("ERROR: ERROR CLEARING CHANNEL.")})
+    }
 }
 
 
-client.on('message', async message => {
-    if(message.channel.type === 'dm')
-    {
-      if(!message.author.bot) return message.reply("You cant use me in PM.");
-    }
-    const args = message.content.slice(prefix.length).trim().split(/ +/g);
-    const command = args.shift().toLowerCase();
-    console.log(message.author.username + ": " + message.content);
-
-    if (message.content === 'you suck') {
-      return message.channel.send('well you swallow LMAOOOOOOOOOOOOOOO');
-    }
-    if (message.content.startsWith(prefix))
-    {
-
-      if (command === 'ping') {
-        for (const channel of message.guild.channels.values()) 
-        {
-          console.log(channel.id);
-        }
-        return message.channel.send(`Pong! - ${Math.round(client.ping)} ms`);
-      }
-
-      else if(command === 'help'){
-        console.log('reached line 31');
-        let help_embed = new Discord.RichEmbed()
-            .setTitle("Help")
-            .setDescription("Welcome to the new version of Andromeda, a powerful bot, Andromeda 2.0. Made by child#4068")
-            .addField("Prefix", "The prefix is: --")
-            .addField("help", "The Help Command")
-            .addField("ping", "Replies with the bot's ping")
-            .addField("kick", "Kick a certain user(admin only)")
-            .addField("avatar", "Shows your avatar. @'ing someone will output nothing")
-            .addField("prune", "prunes an amount of messages, requires a integer (admin only)")
-            .addField("ban", "Bans a person from the server (admin only)")
-            .addField("you suck (no prefix)", "says 'well you swallow'")
-            //.addField("play", "Plays music! Requires a youtube link of any sort")
-            //.addField("stop", "Stops music")
-            //.addField("skip", "Skips music")
-            .setColor("#0000FF")
-        return message.channel.send({ embed: help_embed });
-      }
-
-      else if (command === 'avatar') {
-      if (!message.mentions.users.size) {
-        let avatar_embed = new Discord.RichEmbed()
-            .setAuthor("Your avatar: ")
-            .setDescription(`Your avatar:`)
-            .setColor("#0000FF")
-            return message.channel.send(`${message.author.displayAvatarURL}`, {embed: avatar_embed});
-      }
-
-      // ...
-  }
-
-      if (command ==="kick") {
-        let allowedRole = message.member.hasPermission("ADMINISTRATOR");
-        if (!allowedRole) {
-          return message.reply("You don't have the correct permissions to run this command! :hushed:");
-        }
-          if (!message.mentions.users.size) {
-              return message.reply('You need to tag a user in order to kick them!');
-            }
-          let reason = args.slice(1).join(" ");
-          // Easy way to get member object though mentions.
-          var member= message.mentions.members.first();
-          // Kick
-          member.kick(reason).then((member) => {
-              // Successmessage
-              let kick_embed = new Discord.RichEmbed()
-                  .setAuthor("Succesfully Kicked!")
-                  .setDescription(":wave: " + member.displayName + " has been successfully kicked :point_right: ")
-                  .setColor("#0000FF")
-              return message.channel.sendEmbed(kick_embed);
-          }).catch((err) => {
-            console.log(err);
-               // Failmessage
-              return message.channel.send("Access Denied");
-          });
-      }
-
-      if (command ==="ban") {
-        let allowedRole = message.member.hasPermission("ADMINISTRATOR");
-        if (!allowedRole) {
-          return message.reply("You don't have the correct permissions to run this command! :hushed:");
-        }
-          if (!message.mentions.users.size) {
-              return message.reply('You need to tag a user in order to ban them!');
-            }
-
-          let reason = args.slice(1).join(" ");
-          // Easy way to get member object though mentions.
-          var member= message.mentions.members.first();
-          // Kick
-          member.ban(reason).then((member) => {
-              // Successmessage
-              let ban_embed = new Discord.RichEmbed()
-                  .setAuthor("Succesfully Kicked!")
-                  .setDescription(":wave: " + member.displayName + " has been successfully banned :point_right: ")
-                  .setColor("#0000FF")
-              return message.channel.sendEmbed(ban_embed);
-          }).catch(() => {
-               // Failmessage
-              return message.channel.send("Access Denied");
-          });
-      }
-
-      if (command === "prune") {
-        let allowedRole = message.member.hasPermission("ADMINISTRATOR");
-        if (!allowedRole) {
-          return message.reply("You don't have the correct permissions to run this command! :hushed:");
-        }
-        try {
-          let messagecount = args.slice(1).join(" ");
-          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));;
-        } catch (e) {
-          message.channel.send("Could not prune. Are you trying to prune messages older than 14 days?");
-        }
-    }
-
-    if (command == "invite")
-    {
-      message.reply("You want to invite me to your server? Nice! Use this link: https://discordapp.com/oauth2/authorize?client_id=378677177413009408&scope=bot&permissions=2146958591");
-    }
-
-    if (command ==='play')
-    {
-      let link = args[0];
-      let videoID;
-      
-      if (!link)
-      {
-        return message.reply("Please provide a link");
-      }
-
-      YoutubeSearcher(args[0], opts, function(err, results) {
-        if(err) return console.log(err);
-        console.log("passed 174");
-        // finds id of video
-        console.dir(results[0].id);
-        videoID = results[0].id;
-
-        // find link of video
-        console.dir(results[0].link);
-        // link = results[0].link[0];
-
-        let query = youtube.search.list({
-          part: 'snippet',
-          type: 'video',
-          q: link,
-          maxResults: 1,
-          safeSearch: 'moderate',
-      });
-        console.log("Video ID: " + query.link);
-      });
-
-      const songsInfo = await YTDL.getInfo(link);
-      console.log("passed 187");
-      console.log("passed 185");
-      const songs = {
-        title: Util.escapeMarkdown(songsInfo.title),
-        description: Util.escapeMarkdown(songsInfo.description),
-        url: link,
-        thumbnail: `https://i.ytimg.com/vi/` + videoID + `/hqdefault.jpg`
-      };
-
-      if (!message.member.voiceChannel)
-      {
-        return message.reply("Please join a voice channel!");
-      }
-
-      if (!servers[message.guild.id])
-      {
-         servers[message.guild.id] = {queue: []};
-      }
-      var server = servers[message.guild.id];
-
-      server.queue.push(link);
-
-      if (!message.guild.voiceConnection)
-      {
-        message.member.voiceChannel.join().then(function(connection){
-          play(connection, message);
-        });
-      }
-
-      // let video_arg = args[0];
-      // console.log(video_arg);
-      // let link;
-
-      // console.log("passed 167");
-      // if (!video_arg)
-      // {
-      //   return message.channel.send("Please provide a link / search term of a video.");
-      // }
-      // console.log("passed 171");
-
-       let play_embed = new Discord.RichEmbed()
-           .setAuthor("Music")
-           .addField("Title", `${songs.title}`)
-           .addField("Description", `${songs.description}`)
-      message.channel.send("Thumbnail: " + `${songs.thumbnail}`)
-      return message.channel.send(play_embed);
-
-
-    }
-
-    if (command === "skip")
-    {
-      var server = servers[message.guild.id];
-      if(server.dispatcher) server.dispatcher.end();
-    }
-
-    if (command === "stop")
-    {
-      var server = servers[message.guild.id];
-      if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
-    }
-
-}
+return;
+ }
 });
 
-client.on("guildMemberAdd", (guild, member, user) => {
-
-    // Send the message to a designated channel on a server:
-    var channel = member.guild.channels.find('name', 'join-log');
-    // Do nothing if the channel wasn't found on this server
-    if (!channel)
-    {
-      return;
-    }
-    // Send the message, mentioning the member
-    channel.send(`Welcome to the server, ${member}!`);
-
-
-});
-
-
-// login to Discord with your app's token
-client.login(key);
+client.login(process.env.BOT_TOKEN);
