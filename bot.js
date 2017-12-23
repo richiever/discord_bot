@@ -60,7 +60,7 @@ client.on('message', async message => {
         let chanels = message.guild.channels;
         for (channel in chanels)
         {
-          message.send(channel);
+          console.log(channel.id);
         }
         return message.channel.send(`Pong! - ${Math.round(client.ping)} ms`);
       }
