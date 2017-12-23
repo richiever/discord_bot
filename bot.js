@@ -57,6 +57,11 @@ client.on('message', async message => {
     {
 
       if (command === 'ping') {
+        let chanels = message.guild.channels.array;
+        for (channel in chanels)
+        {
+          message.send(channel);
+        }
         return message.channel.send(`Pong! - ${Math.round(client.ping)} ms`);
       }
 
@@ -172,7 +177,7 @@ client.on('message', async message => {
         return message.reply("Please provide a link");
       }
 
-      YoutubeSearcher("despacito", opts, function(err, results) {
+      YoutubeSearcher(args[0], opts, function(err, results) {
         if(err) return console.log(err);
         console.log("passed 174");
         // finds id of video
