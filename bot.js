@@ -40,6 +40,15 @@ var opts = {
   kind: "youtube#video"
 };
 
+function getChannelIDs(fetch) 
+{
+  let channels = client.channels.get(fetch);
+  for (const channel of channels.values()) 
+  {
+    console.log(channel.id);
+  }
+}
+
 
 client.on('message', async message => {
     if(message.channel.type === 'dm')
