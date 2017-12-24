@@ -1,9 +1,9 @@
 {
-  "name": "Andromeda",
+  "name": "paradox",
   "version": "1.0.0",
-  "description": "The better and new version of Andromeda.",
+  "description": "so this runs 24/7.",
   "main": "bot.js",
-  "author": "Aritro Saha",
+  "author": "richie day",
   "dependencies": {
     "discord-rpc": "^3.0.0-beta.2",
     "discord.js": "^11.2.1",
