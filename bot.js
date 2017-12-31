@@ -15,7 +15,7 @@ client.on('guildMemberAdd', member => {
   });
 
 client.on('message', msg => {
-  if (msg.content === '$cat') {
+  if (msg.content === '$cats') {
     msg.reply('http://apopka-1x1yusplq.stackpathdns.com/wp-content/uploads/2017/10/persian-cats-and-kittens-1.jpg');
   }
   if (msg.content === '$christmas with paradox') {
