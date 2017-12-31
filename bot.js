@@ -15,13 +15,13 @@ client.on('guildMemberAdd', member => {
   });
 
 client.on('message', msg => {
-  if (msg.content === '$cats') {
+  if (msg.content === '$cat') {
     msg.reply('http://apopka-1x1yusplq.stackpathdns.com/wp-content/uploads/2017/10/persian-cats-and-kittens-1.jpg');
   }
   if (msg.content === '$christmas with paradox') {
     msg.reply('https://cdn.discordapp.com/attachments/381004839502741519/387135800715771904/Blank-background_-_Copy.jpg');
   }
-  if (msg.content === '$dog') {
+  if (msg.content === '$dogs') {
     msg.reply('https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi');
   }
   if (msg.content === '$dat boi') {
@@ -30,7 +30,7 @@ client.on('message', msg => {
   if (msg.content === '$claydol') {
     msg.reply('http://i0.kym-cdn.com/photos/images/original/001/103/070/2d1.gif');
   }
-  if (msg.content === '$pikachu') {
+  if (msg.content === '$pickachu') {
     msg.reply('http://www.pokestadium.com/sprites/xy/pikachu.gif http://www.pokestadium.com/sprites/xy/pikachu-f-3.gif');
   }
     if (msg.content === '$pokemon') {
@@ -39,7 +39,7 @@ client.on('message', msg => {
   msg.reply(reply)
     }
     if (msg.content === '$help') {
-      msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\nban:admin only!bans someone\nmute:admin only!mutes someone\npurge:(admin only!bulkdeletes loads of messages)\nchristmas with paradox: merry christmas with paradox!\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
+      msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\ncats:sends pic of a cat\nban:admin only!bans someone\nmute:admin only!mutes someone\npurge:(admin only!bulkdeletes loads of messages)\nchristmas with paradox: merry christmas with paradox!\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
     }
 });
 
