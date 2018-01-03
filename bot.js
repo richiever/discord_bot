@@ -20,7 +20,6 @@ client.on('message', msg => {
 var reply = replies[Math.floor(Math.random()* replies.length)]
 msg.reply(reply)
   }
-  }
   if (msg.content === '$dogs') {
     msg.reply('https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi');
   }
