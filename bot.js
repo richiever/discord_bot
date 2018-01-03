@@ -21,7 +21,7 @@ client.on('message', msg => {
   if (msg.content === '$christmas with paradox') {
     msg.reply('https://cdn.discordapp.com/attachments/381004839502741519/387135800715771904/Blank-background_-_Copy.jpg');
   }
-  if (msg.content === '$dog') {
+  if (msg.content === '$dogs') {
     msg.reply('https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi');
   }
   if (msg.content === '$dat boi') {
