@@ -16,10 +16,10 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', msg => {
   if (msg.content === '$cats') {
-    msg.reply('http://apopka-1x1yusplq.stackpathdns.com/wp-content/uploads/2017/10/persian-cats-and-kittens-1.jpg');
+        var replies = ["http://r.ddmcdn.com/s_f/o_1/cx_462/cy_245/cw_1349/ch_1349/w_720/APL/uploads/2015/06/caturday-shutterstock_149320799.jpg","https://vetstreet.brightspotcdn.com/dims4/default/a1a90c7/2147483647/thumbnail/180x180/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F0d%2Ff2e4c0b3a611e092fe0050568d634f%2Ffile%2Fhub-cats-senior.jpg" "https://www.petmd.com/sites/default/files/scared-kitten-shutterstock_191443322.jpg"]
+var reply = replies[Math.floor(Math.random()* replies.length)]
+msg.reply(reply)
   }
-  if (msg.content === '$christmas with paradox') {
-    msg.reply('https://cdn.discordapp.com/attachments/381004839502741519/387135800715771904/Blank-background_-_Copy.jpg');
   }
   if (msg.content === '$dogs') {
     msg.reply('https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi');
