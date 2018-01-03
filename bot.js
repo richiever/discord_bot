@@ -30,7 +30,7 @@ client.on('message', msg => {
   if (msg.content === '$claydol') {
     msg.reply('http://i0.kym-cdn.com/photos/images/original/001/103/070/2d1.gif');
   }
-  if (msg.content === '$pikachu') {
+  if (msg.content === '$pickachu') {
     msg.reply('http://www.pokestadium.com/sprites/xy/pikachu.gif http://www.pokestadium.com/sprites/xy/pikachu-f-3.gif');
   }
     if (msg.content === '$pokemon') {
