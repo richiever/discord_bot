@@ -16,11 +16,12 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', msg => {
   if (msg.content === '$cats') {
-        var replies = ["http://r.ddmcdn.com/s_f/o_1/cx_462/cy_245/cw_1349/ch_1349/w_720/APL/uploads/2015/06/caturday-shutterstock_149320799.jpg","https://vetstreet.brightspotcdn.com/dims4/default/a1a90c7/2147483647/thumbnail/180x180/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F0d%2Ff2e4c0b3a611e092fe0050568d634f%2Ffile%2Fhub-cats-senior.jpg" "https://www.petmd.com/sites/default/files/scared-kitten-shutterstock_191443322.jpg"]
-var reply = replies[Math.floor(Math.random()* replies.length)]
-msg.reply(reply)
+    msg.reply('http://apopka-1x1yusplq.stackpathdns.com/wp-content/uploads/2017/10/persian-cats-and-kittens-1.jpg');
   }
-  if (msg.content === '$dogs') {
+  if (msg.content === '$christmas with paradox') {
+    msg.reply('https://cdn.discordapp.com/attachments/381004839502741519/387135800715771904/Blank-background_-_Copy.jpg');
+  }
+  if (msg.content === '$dog') {
     msg.reply('https://www.cesarsway.com/sites/newcesarsway/files/styles/large_article_preview/public/Common-dog-behaviors-explained.jpg?itok=FSzwbBoi');
   }
   if (msg.content === '$dat boi') {
@@ -29,7 +30,7 @@ msg.reply(reply)
   if (msg.content === '$claydol') {
     msg.reply('http://i0.kym-cdn.com/photos/images/original/001/103/070/2d1.gif');
   }
-  if (msg.content === '$pickachu') {
+  if (msg.content === '$pikachu') {
     msg.reply('http://www.pokestadium.com/sprites/xy/pikachu.gif http://www.pokestadium.com/sprites/xy/pikachu-f-3.gif');
   }
     if (msg.content === '$pokemon') {
@@ -38,7 +39,7 @@ msg.reply(reply)
   msg.reply(reply)
     }
     if (msg.content === '$help') {
-      msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\ncats:sends pic of a cat\nban:admin only!bans someone\nmute:admin only!mutes someone\npurge:(admin only!bulkdeletes loads of messages)\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
+      msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\nban:admin only!bans someone\nmute:admin only!mutes someone\npurge:(admin only!bulkdeletes loads of messages)\nchristmas with paradox: merry christmas with paradox!\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
     }
 });
 
