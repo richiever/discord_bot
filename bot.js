@@ -37,11 +37,6 @@ msg.reply(reply)
   var reply = replies[Math.floor(Math.random()* replies.length)]
   msg.reply(reply)
     }
-      if (msg.content === '$cats') {
-      var replies = ["http://r.ddmcdn.com/s_f/o_1/cx_462/cy_245/cw_1349/ch_1349/w_720/APL/uploads/2015/06/caturday-shutterstock_149320799.jpg","https://vetstreet.brightspotcdn.com/dims4/default/a1a90c7/2147483647/thumbnail/180x180/quality/90/?url=https%3A%2F%2Fvetstreet-brightspot.s3.amazonaws.com%2F0d%2Ff2e4c0b3a611e092fe0050568d634f%2Ffile%2Fhub-cats-senior.jpg" "https://www.petmd.com/sites/default/files/scared-kitten-shutterstock_191443322.jpg"]
-  var reply = replies[Math.floor(Math.random()* replies.length)]
-  msg.reply(reply)
-    }
     if (msg.content === '$help') {
       msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\ncats:sends pic of a cat\nban:admin only!bans someone\nmute:admin only!mutes someone\npurge:(admin only!bulkdeletes loads of messages)\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
     }
