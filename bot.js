@@ -39,7 +39,7 @@ client.on('message', msg => {
   msg.reply(reply)
     }
     if (msg.content === '$help') {
-      msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\nban:admin only!bans someone\nmute:admin only!mutes someone\npurge:(admin only!bulkdeletes loads of messages)\nchristmas with paradox: merry christmas with paradox!\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
+      msg.reply('pokemon:catches a pokemon for you.\n pickachu:sends a pic of pickachu\n claydol:sends a pic of claydol\ndogs:sends a pic of a dog.\ndat boi:sends a pic of DaT BoI\npickachu:sends a pic of pickachu!\nkick:admin only! kicks someone\nban:admin only!bans someone\nmute:admin only!mutes someone\nchristmas with paradox: merry christmas with paradox!\nalso, make sure to join the offical paradox bot server!https://discord.gg/s7upEX3');
     }
 });
 
